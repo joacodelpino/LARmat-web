@@ -1,4 +1,6 @@
-import { Phone, MapPin, Clock, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, FacebookLogo, InstagramLogo, WhatsappLogo } from '@phosphor-icons/react';
+import { SUCURSALES, REDES } from '../data/info';
+
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -23,31 +25,31 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://facebook.com"
+                href={REDES.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
-                <Facebook size={16} />
+                <FacebookLogo size={16} />
               </a>
               <a
-                href="https://instagram.com"
+                href={REDES.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram size={16} />
+                <InstagramLogo size={16} />
               </a>
               <a
-                href="https://wa.me/5493804000000"
+                href={SUCURSALES.capitalDorrego.wppLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="WhatsApp"
               >
-                <MessageCircle size={16} />
+                <WhatsappLogo size={16} />
               </a>
             </div>
           </div>
@@ -83,9 +85,9 @@ export default function Footer() {
             </h4>
             <div className="space-y-5">
               {[
-                { name: 'Capital', address: 'Av. Principal 1234, La Rioja' },
-                { name: 'Parque Industrial', address: 'Zona Industrial, La Rioja' },
-                { name: 'Chilecito', address: 'Ruta Nacional 40, Chilecito' },
+                { name: 'Capital', address: SUCURSALES.capitalDorrego.address },
+                { name: 'Parque Industrial', address: SUCURSALES.capitalParqueIndustrial.address },
+                { name: 'Chilecito', address: SUCURSALES.chilecito.address },
               ].map((branch) => (
                 <div key={branch.name}>
                   <p className="text-neutral text-sm font-semibold">{branch.name}</p>
@@ -104,50 +106,32 @@ export default function Footer() {
             </h4>
             <div className="space-y-4">
               <a
-                href="tel:+5493804000001"
+                href={SUCURSALES.capitalDorrego.telHref}
                 className="flex items-center gap-3 text-gray-400 hover:text-neutral text-sm transition-colors group"
               >
                 <div className="w-8 h-8 rounded-sm bg-white/5 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
                   <Phone size={14} className="text-primary" />
                 </div>
-                (380) 400-0001 — Capital
+                {SUCURSALES.capitalDorrego.tel} — Capital
               </a>
               <a
-                href="tel:+5493804000002"
+                href={SUCURSALES.chilecito.telHref}
                 className="flex items-center gap-3 text-gray-400 hover:text-neutral text-sm transition-colors group"
               >
                 <div className="w-8 h-8 rounded-sm bg-white/5 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
                   <Phone size={14} className="text-primary" />
                 </div>
-                (380) 400-0002 — P. Industrial
+                {SUCURSALES.chilecito.tel} — Chilecito
               </a>
-              <a
-                href="tel:+5493804000003"
-                className="flex items-center gap-3 text-gray-400 hover:text-neutral text-sm transition-colors group"
-              >
-                <div className="w-8 h-8 rounded-sm bg-white/5 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
-                  <Phone size={14} className="text-primary" />
-                </div>
-                (380) 400-0003 — Chilecito
-              </a>
-              <div className="flex items-start gap-3 text-gray-400 text-sm">
-                <div className="w-8 h-8 rounded-sm bg-white/5 flex items-center justify-center shrink-0">
-                  <Clock size={14} className="text-primary" />
-                </div>
-                <div>
-                  <p>Lun – Vie: 8:00 – 19:00</p>
-                  <p>Sábados: 8:00 – 13:00</p>
-                </div>
-              </div>
             </div>
 
             <a
-              href="https://wa.me/5493804000000"
+              href={SUCURSALES.capitalDorrego.wppLink}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 flex items-center gap-2 bg-primary hover:bg-support text-white text-sm font-bold py-3 px-4 rounded-sm transition-colors justify-center"
             >
-              <MessageCircle size={16} />
+              <WhatsappLogo size={16} />
               Escribinos por WhatsApp
             </a>
           </div>

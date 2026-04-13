@@ -1,65 +1,10 @@
 import { CheckCircle, Sparkles, MessageCircle } from 'lucide-react';
-
-const products = [
-  {
-    name: 'Ladrillos Rapilosa',
-    category: 'Ladrillos',
-    badge: 'Stock disponible',
-    badgeType: 'stock',
-    image:
-      'https://images.pexels.com/photos/1309897/pexels-photo-1309897.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
-    description: 'Ladrillo cerámico hueco ideal para paredes interiores y exteriores.',
-  },
-  {
-    name: 'Ladrillos Portantes',
-    category: 'Ladrillos',
-    badge: 'Stock disponible',
-    badgeType: 'stock',
-    image:
-      'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
-    description: 'Alta resistencia estructural para muros portantes.',
-  },
-  {
-    name: 'Cerámicos de Piso',
-    category: 'Revestimientos',
-    badge: 'Nuevos ingresos',
-    badgeType: 'new',
-    image:
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
-    description: 'Amplia variedad de formatos y diseños para todo tipo de ambientes.',
-  },
-  {
-    name: 'Paneles para Pared',
-    category: 'Construcción en Seco',
-    badge: 'Nuevos ingresos',
-    badgeType: 'new',
-    image:
-      'https://images.pexels.com/photos/3990359/pexels-photo-3990359.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
-    description: 'Sistemas de tabique seco para construcciones rápidas y eficientes.',
-  },
-  {
-    name: 'Losetas Térmicas',
-    category: 'Materiales',
-    badge: 'Stock disponible',
-    badgeType: 'stock',
-    image:
-      'https://images.pexels.com/photos/2098624/pexels-photo-2098624.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
-    description: 'Aislación térmica y acústica de alto rendimiento.',
-  },
-  {
-    name: 'Varillas de Hierro',
-    category: 'Hierros',
-    badge: 'Stock disponible',
-    badgeType: 'stock',
-    image:
-      'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
-    description: 'Varillas corrugadas certificadas para estructuras de hormigón armado.',
-  },
-];
+import { products } from '../data/products';
+import { SUCURSALES } from '../data/info';
 
 export default function FeaturedProducts() {
   return (
-    <section id="stock" className="py-20 bg-gray-50">
+    <section id="stock" className="py-10 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <span className="text-primary text-sm font-bold uppercase tracking-widest">
@@ -77,7 +22,7 @@ export default function FeaturedProducts() {
           {products.map((product) => (
             <div
               key={product.name}
-              className="group bg-white rounded-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-primary/30"
+              className="group bg-white rounded-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-primary/30 flex flex-col"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -104,11 +49,11 @@ export default function FeaturedProducts() {
                   </span>
                 </div>
               </div>
-              <div className="p-5">
+              <div className="p-5 flex flex-col flex-1">
                 <h3 className="text-secondary font-bold text-lg mb-1">{product.name}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4">{product.description}</p>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{product.description}</p>
                 <a
-                  href={`https://wa.me/5493804000000?text=Hola! Me interesa consultar sobre ${encodeURIComponent(product.name)}`}
+                  href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Me interesa consultar sobre ${encodeURIComponent(product.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-primary hover:text-support font-semibold text-sm transition-colors group/link"
@@ -124,7 +69,7 @@ export default function FeaturedProducts() {
 
         <div className="text-center mt-10">
           <a
-            href="https://wa.me/5493804000000?text=Hola! Quiero ver el catálogo completo de productos."
+            href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero ver el catálogo completo de productos.`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-3 rounded-sm transition-all duration-300"

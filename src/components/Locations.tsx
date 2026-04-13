@@ -1,34 +1,6 @@
-import { MapPin, Phone, MessageCircle, Clock } from 'lucide-react';
-
-const branches = [
-  {
-    name: 'Capital',
-    address: 'Av. Principal 1234, La Rioja Capital',
-    phone: '(380) 400-0001',
-    hours: 'Lun – Vie: 8:00 – 19:00 | Sáb: 8:00 – 13:00',
-    image:
-      'https://images.pexels.com/photos/1838640/pexels-photo-1838640.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-    featured: true,
-  },
-  {
-    name: 'Parque Industrial',
-    address: 'Zona Industrial, La Rioja',
-    phone: '(380) 400-0002',
-    hours: 'Lun – Vie: 8:00 – 18:00 | Sáb: 8:00 – 12:00',
-    image:
-      'https://images.pexels.com/photos/236705/pexels-photo-236705.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-    featured: false,
-  },
-  {
-    name: 'Chilecito',
-    address: 'Ruta Nacional 40, Chilecito, La Rioja',
-    phone: '(380) 400-0003',
-    hours: 'Lun – Vie: 8:00 – 18:00 | Sáb: 8:00 – 12:00',
-    image:
-      'https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-    featured: false,
-  },
-];
+import { MapPin, Phone, MessageCircle, Clock, Navigation } from 'lucide-react';
+import { branches } from '../data/branches';
+import { SUCURSALES } from '../data/info';
 
 export default function Locations() {
   return (
@@ -46,11 +18,15 @@ export default function Locations() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {branches.map((branch) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {branches.map((branch, i) => (
             <div
               key={branch.name}
               className={`group rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border ${
+                i === branches.length - 1 && branches.length % 2 !== 0
+                  ? 'sm:col-span-2 md:col-span-1'
+                  : ''
+              } ${
                 branch.featured
                   ? 'border-primary/30 ring-1 ring-primary/20'
                   : 'border-gray-100'
@@ -91,7 +67,7 @@ export default function Locations() {
 
                 <div className="flex gap-3">
                   <a
-                    href={`https://wa.me/5493804000000?text=Hola! Quiero información sobre la sucursal ${branch.name}`}
+                    href={`${branch.wppHref}?text=Hola! Quiero información sobre la sucursal ${branch.name}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-support text-white text-sm font-bold py-2.5 rounded-sm transition-colors"
@@ -100,11 +76,13 @@ export default function Locations() {
                     Contactar
                   </a>
                   <a
-                    href={`tel:${branch.phone}`}
+                    href={branch.mapsHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 border border-gray-300 hover:border-primary text-gray-600 hover:text-primary text-sm font-semibold py-2.5 rounded-sm transition-all"
                   >
-                    <Phone size={15} />
-                    Llamar
+                    <Navigation size={15} />
+                    Ubicación
                   </a>
                 </div>
               </div>
@@ -120,10 +98,10 @@ export default function Locations() {
             </p>
           </div>
           <a
-            href="https://wa.me/5493804000000?text=Hola! Quiero consultar precios por volumen."
+            href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero consultar precios por volumen.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-accent text-white font-bold px-6 py-3 rounded-sm transition-colors"
+            className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold px-6 py-3 rounded-sm transition-colors duration-500"
           >
             <MessageCircle size={16} />
             Consultar precios mayoristas

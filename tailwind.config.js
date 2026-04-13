@@ -10,6 +10,11 @@ export default {
         neutral: '#f2c979',
         support: '#74020c',
       },
+      fontFamily: {
+        heavy: ['"Franklin Gothic Heavy"', 'sans-serif'],
+        medium: ['"Franklin Gothic Medium"', 'sans-serif'],
+        book: ['"Franklin Gothic Book"', 'sans-serif'],
+      },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
         'fade-in': 'fadeIn 0.8s ease-out forwards',

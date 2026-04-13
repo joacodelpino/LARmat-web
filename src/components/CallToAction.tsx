@@ -1,4 +1,5 @@
 import { MessageCircle, Phone, HardHat } from 'lucide-react';
+import { SUCURSALES } from '../data/info';
 
 export default function CallToAction() {
   return (
@@ -33,7 +34,7 @@ export default function CallToAction() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="https://wa.me/5493804000000?text=Hola! Estoy por comenzar una obra y necesito asesoramiento."
+            href={SUCURSALES.capitalDorrego.wppLink}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-3 bg-primary hover:bg-support text-white font-bold text-lg px-10 py-4 rounded-sm transition-all duration-300 shadow-2xl hover:shadow-primary/30 hover:scale-105 w-full sm:w-auto justify-center"
@@ -42,7 +43,7 @@ export default function CallToAction() {
             Escribinos por WhatsApp
           </a>
           <a
-            href="tel:+5493804000000"
+            href={SUCURSALES.capitalDorrego.telHref}
             className="flex items-center gap-3 border-2 border-neutral text-neutral hover:bg-neutral hover:text-black font-bold text-lg px-10 py-4 rounded-sm transition-all duration-300 w-full sm:w-auto justify-center"
           >
             <Phone size={20} />
