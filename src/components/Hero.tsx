@@ -47,7 +47,7 @@ export default function Hero() {
             href={SUCURSALES.capitalDorrego.wppHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 bg-primary hover:bg-support text-white font-bold text-base sm:text-lg px-8 py-4 rounded-sm transition-all duration-300 shadow-xl"
+            className="group flex items-center gap-3 bg-primary hover:bg-support text-white font-bold text-base sm:text-lg px-8 py-4 rounded-sm hover:shadow-xl hover:scale-105  transition-all duration-300"
           >
             <MessageCircle size={22} />
             Consultar por WhatsApp
