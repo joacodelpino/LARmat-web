@@ -4,7 +4,7 @@ import { SUCURSALES } from '../data/info';
 
 export default function FeaturedProducts() {
   return (
-    <section id="stock" className="py-20 bg-gray-50">
+    <section id="stock" className="py-10 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <span className="text-primary text-sm font-bold uppercase tracking-widest">

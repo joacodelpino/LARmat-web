@@ -4,7 +4,7 @@ import { SUCURSALES } from '../data/info';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden p-10">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden p-5">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -29,7 +29,7 @@ export default function Hero() {
           className="mx-auto mb-6 w-40 sm:w-52 lg:w-64 animate-fade-in"
         />
 
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight mb-6 animate-fade-in-up font-heavy [filter:drop-shadow(2px_2px_3px_rgba(0,0,0,0.50))]">
+        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight mb-6 animate-fade-in-up font-heavy [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.40))]">
           Todo lo que tu obra
           <span className="block text-primary font-heavy">necesita,</span>
           <span className="block text-neutral text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 font-heavy">
