@@ -37,9 +37,9 @@ export default function CallToAction() {
             href={SUCURSALES.capitalDorrego.wppLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 bg-primary hover:bg-support text-white font-bold text-lg px-10 py-4 rounded-sm transition-all duration-300 shadow-2xl hover:shadow-primary/30 hover:scale-105 w-full sm:w-auto justify-center"
+            className="group flex items-center gap-3 bg-primary hover:bg-support text-white font-bold text-lg px-10 py-4 rounded-sm transition-all duration-300 shadow-2xl hover:shadow-primary/20 hover:scale-105 w-full sm:w-auto justify-center"
           >
-            <MessageCircle size={22} className="group-hover:animate-bounce" />
+            <MessageCircle size={22} />
             Escribinos por WhatsApp
           </a>
           <a

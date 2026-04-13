@@ -21,7 +21,7 @@ export const branches: Branch[] = [
     wppHref: SUCURSALES.capitalDorrego.wppHref,
     mapsHref: SUCURSALES.capitalDorrego.mapsHref,
     hours: 'Lun – Vie: 8:30 – 13:00 y 17:00 – 20:30 | Sáb: 8:00 – 13:00',
-    image: 'https://images.pexels.com/photos/1838640/pexels-photo-1838640.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
+    image: 'https://images.pexels.com/photos/26821388/pexels-photo-26821388.jpeg',
     featured: true,
   },
   {
@@ -32,7 +32,7 @@ export const branches: Branch[] = [
     wppHref: SUCURSALES.capitalParqueIndustrial.wppHref,
     mapsHref: SUCURSALES.capitalParqueIndustrial.mapsHref,
     hours: 'Lun – Vie: 8:30 – 17:00 | Sáb: 8:30 – 12:30',
-    image: 'https://images.pexels.com/photos/236705/pexels-photo-236705.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
+    image: 'https://images.pexels.com/photos/31499725/pexels-photo-31499725.jpeg',
     featured: false,
   },
   {
@@ -43,7 +43,7 @@ export const branches: Branch[] = [
     wppHref: SUCURSALES.chilecito.wppHref,
     mapsHref: SUCURSALES.chilecito.mapsHref,
     hours: 'Lun – Vie: 8:00 – 18:00 | Sáb: 8:00 – 12:00',
-    image: 'https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
+    image: 'https://images.pexels.com/photos/31039719/pexels-photo-31039719.jpeg',
     featured: false,
   },
 ];

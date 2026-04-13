@@ -101,7 +101,7 @@ export default function Locations() {
             href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero consultar precios por volumen.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold px-6 py-3 rounded-sm transition-colors duration-500"
+            className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold px-6 py-3 rounded-sm hover:shadow-xl[0_0_2px_rgba(0,0,0,0.9)] duration-300 transition-all"
           >
             <MessageCircle size={16} />
             Consultar precios mayoristas

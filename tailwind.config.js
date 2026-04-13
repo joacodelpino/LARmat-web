@@ -6,9 +6,8 @@ export default {
       colors: {
         primary: '#f24a49',
         secondary: '#000000',
-        accent: '#582b02',
+        accent: '#74020c',
         neutral: '#f2c979',
-        support: '#74020c',
       },
       fontFamily: {
         heavy: ['"Franklin Gothic Heavy"', 'sans-serif'],
