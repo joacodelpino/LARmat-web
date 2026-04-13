@@ -46,11 +46,15 @@ export default function Locations() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {branches.map((branch) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {branches.map((branch, i) => (
             <div
               key={branch.name}
               className={`group rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border ${
+                i === branches.length - 1 && branches.length % 2 !== 0
+                  ? 'sm:col-span-2 md:col-span-1'
+                  : ''
+              } ${
                 branch.featured
                   ? 'border-primary/30 ring-1 ring-primary/20'
                   : 'border-gray-100'

@@ -30,9 +30,9 @@ export default function Navbar() {
           <div className="bg-primary rounded-sm px-2 py-1">
             <span className="text-white font-black text-xl tracking-tight">LAR</span>
           </div>
-          <div className="hidden sm:block">
-            <span className="text-white font-bold text-sm leading-tight block">Materiales de</span>
-            <span className="text-neutral font-bold text-sm leading-tight block">Construcción</span>
+          <div>
+            <span className="text-white font-bold text-xs sm:text-sm leading-tight block">Materiales de</span>
+            <span className="text-neutral font-bold text-xs sm:text-sm leading-tight block">Construcción</span>
           </div>
         </a>
 
