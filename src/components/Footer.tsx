@@ -1,4 +1,4 @@
-import { Phone, MapPin, Clock, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, Clock, FacebookLogo, InstagramLogo, WhatsappLogo } from '@phosphor-icons/react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,7 +29,7 @@ export default function Footer() {
                 className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
-                <Facebook size={16} />
+                <FacebookLogo size={16} />
               </a>
               <a
                 href="https://instagram.com"
@@ -38,7 +38,7 @@ export default function Footer() {
                 className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram size={16} />
+                <InstagramLogo size={16} />
               </a>
               <a
                 href="https://wa.me/5493804000000"
@@ -47,7 +47,7 @@ export default function Footer() {
                 className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="WhatsApp"
               >
-                <MessageCircle size={16} />
+                <WhatsappLogo size={16} />
               </a>
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="mt-5 flex items-center gap-2 bg-primary hover:bg-support text-white text-sm font-bold py-3 px-4 rounded-sm transition-colors justify-center"
             >
-              <MessageCircle size={16} />
+              <WhatsappLogo size={16} />
               Escribinos por WhatsApp
             </a>
           </div>
