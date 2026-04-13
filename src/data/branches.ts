@@ -6,6 +6,7 @@ export interface Branch {
   phone: string;
   telHref: string;
   wppHref: string;
+  mapsHref: string;
   hours: string;
   image: string;
   featured: boolean;
@@ -18,6 +19,7 @@ export const branches: Branch[] = [
     phone: SUCURSALES.capitalDorrego.tel,
     telHref: SUCURSALES.capitalDorrego.telHref,
     wppHref: SUCURSALES.capitalDorrego.wppHref,
+    mapsHref: SUCURSALES.capitalDorrego.mapsHref,
     hours: 'Lun – Vie: 8:30 – 13:00 y 17:00 – 20:30 | Sáb: 8:00 – 13:00',
     image: 'https://images.pexels.com/photos/1838640/pexels-photo-1838640.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
     featured: true,
@@ -28,6 +30,7 @@ export const branches: Branch[] = [
     phone: SUCURSALES.capitalParqueIndustrial.tel,
     telHref: SUCURSALES.capitalParqueIndustrial.telHref,
     wppHref: SUCURSALES.capitalParqueIndustrial.wppHref,
+    mapsHref: SUCURSALES.capitalParqueIndustrial.mapsHref,
     hours: 'Lun – Vie: 8:30 – 17:00 | Sáb: 8:30 – 12:30',
     image: 'https://images.pexels.com/photos/236705/pexels-photo-236705.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
     featured: false,
@@ -38,6 +41,7 @@ export const branches: Branch[] = [
     phone: SUCURSALES.chilecito.tel,
     telHref: SUCURSALES.chilecito.telHref,
     wppHref: SUCURSALES.chilecito.wppHref,
+    mapsHref: SUCURSALES.chilecito.mapsHref,
     hours: 'Lun – Vie: 8:00 – 18:00 | Sáb: 8:00 – 12:00',
     image: 'https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
     featured: false,

@@ -1,4 +1,4 @@
-import { MapPin, Phone, MessageCircle, Clock } from 'lucide-react';
+import { MapPin, Phone, MessageCircle, Clock, Navigation } from 'lucide-react';
 import { branches } from '../data/branches';
 import { SUCURSALES } from '../data/info';
 
@@ -76,11 +76,13 @@ export default function Locations() {
                     Contactar
                   </a>
                   <a
-                    href={branch.telHref}
+                    href={branch.mapsHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 border border-gray-300 hover:border-primary text-gray-600 hover:text-primary text-sm font-semibold py-2.5 rounded-sm transition-all"
                   >
-                    <Phone size={15} />
-                    Llamar
+                    <Navigation size={15} />
+                    Ubicación
                   </a>
                 </div>
               </div>
@@ -99,7 +101,7 @@ export default function Locations() {
             href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero consultar precios por volumen.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-accent text-white font-bold px-6 py-3 rounded-sm transition-colors"
+            className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold px-6 py-3 rounded-sm transition-colors duration-500"
           >
             <MessageCircle size={16} />
             Consultar precios mayoristas
