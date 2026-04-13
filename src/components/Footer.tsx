@@ -1,6 +1,6 @@
 import { Phone, MapPin, FacebookLogo, InstagramLogo, WhatsappLogo } from '@phosphor-icons/react';
 import { SUCURSALES, REDES } from '../data/info';
-
+import Reveal from './Reveal';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="bg-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div className="lg:col-span-1">
+          <Reveal className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="bg-primary rounded-sm px-2 py-1">
                 <span className="text-white font-black text-xl tracking-tight">LAR</span>
@@ -28,7 +28,7 @@ export default function Footer() {
                 href={REDES.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary hover:-translate-y-0.5 flex items-center justify-center transition-all duration-200"
                 aria-label="Facebook"
               >
                 <FacebookLogo size={16} />
@@ -37,7 +37,7 @@ export default function Footer() {
                 href={REDES.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary hover:-translate-y-0.5 flex items-center justify-center transition-all duration-200"
                 aria-label="Instagram"
               >
                 <InstagramLogo size={16} />
@@ -46,15 +46,15 @@ export default function Footer() {
                 href={SUCURSALES.capitalDorrego.wppLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-sm bg-white/10 hover:bg-primary hover:-translate-y-0.5 flex items-center justify-center transition-all duration-200"
                 aria-label="WhatsApp"
               >
                 <WhatsappLogo size={16} />
               </a>
             </div>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={80}>
             <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">
               Productos
             </h4>
@@ -77,9 +77,9 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={160}>
             <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">
               Sucursales
             </h4>
@@ -98,9 +98,9 @@ export default function Footer() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={240}>
             <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">
               Contacto
             </h4>
@@ -129,12 +129,12 @@ export default function Footer() {
               href={SUCURSALES.capitalDorrego.wppLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 flex items-center gap-2 bg-primary hover:bg-support text-white text-sm font-bold py-3 px-4 rounded-sm transition-colors justify-center"
+              className="mt-5 flex items-center gap-2 bg-primary hover:bg-support text-white text-sm font-bold py-3 px-4 rounded-sm transition-all duration-300 hover:-translate-y-0.5 justify-center"
             >
               <WhatsappLogo size={16} />
               Escribinos por WhatsApp
             </a>
-          </div>
+          </Reveal>
         </div>
       </div>
 

@@ -16,6 +16,7 @@ export default function Navbar() {
     { label: 'Productos', href: '#productos' },
     { label: 'Stock', href: '#stock' },
     { label: 'Por qué elegirnos', href: '#nosotros' },
+    { label: 'Sobre nosotros', href: '#sobre-nosotros' },
     { label: 'Sucursales', href: '#sucursales' },
     { label: 'Contacto', href: '#contacto' },
   ];
