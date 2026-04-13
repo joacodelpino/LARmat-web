@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { benefits } from '../data/benefits';
 import { SUCURSALES } from '../data/info';
+import Reveal from './Reveal';
 
 export default function WhyChooseUs() {
   const [mousePos, setMousePos] = useState({ x: -9999, y: -9999 });
@@ -46,7 +47,7 @@ export default function WhyChooseUs() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <Reveal>
             <span className="text-primary text-sm font-bold uppercase tracking-widest">
               Por qué elegirnos
             </span>
@@ -64,36 +65,35 @@ export default function WhyChooseUs() {
                 href={SUCURSALES.capitalDorrego.wppHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary hover:bg-support text-white font-bold px-7 py-3.5 rounded-sm transition-colors text-center"
+                className="bg-primary hover:bg-support text-white font-bold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg text-center"
               >
                 Contactar ahora
               </a>
               <a
                 href="#sucursales"
-                className="border border-gray-600 hover:border-neutral text-gray-300 hover:text-neutral font-semibold px-7 py-3.5 rounded-sm transition-all text-center"
+                className="border border-gray-600 hover:border-neutral text-gray-300 hover:text-neutral font-semibold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 text-center"
               >
                 Ver sucursales
               </a>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 bg-secondary">
-            {benefits.map((benefit) => (
-              <div
-                key={benefit.title}
-                className="group bg-white/5 border-2 border-white/15 hover:border-primary/100 hover:bg-white/16 rounded-md p-6 transition-all duration-300"
-              >
-                <div className="text-primary mb-4 group-hover:scale-110 transition-all duration-300 inline-block [filter:drop-shadow(0_0_6px_rgba(242,74,73,0.25))] group-hover:[filter:drop-shadow(0_0_14px_rgba(242,74,73,0.7))]">
-                  <benefit.icon size={36} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {benefits.map((benefit, i) => (
+              <Reveal key={benefit.title} delay={i * 70}>
+                <div className="group bg-white/5 border-2 border-white/15 hover:border-primary/100 hover:bg-white/[0.08] rounded-md p-6 transition-all duration-300 hover:-translate-y-1">
+                  <div className="text-primary mb-4 group-hover:scale-110 transition-all duration-300 inline-block [filter:drop-shadow(0_0_6px_rgba(242,74,73,0.25))] group-hover:[filter:drop-shadow(0_0_14px_rgba(242,74,73,0.7))]">
+                    <benefit.icon size={36} />
+                  </div>
+                  <h3 className="text-white font-bold text-base mb-2 leading-snug">{benefit.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>
                 </div>
-                <h3 className="text-white font-bold text-base mb-2 leading-snug">{benefit.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
 
-        <div className="mt-16 pt-12 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+        <Reveal className="mt-16 pt-12 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
           {[
             { value: '+40', label: 'Años en el mercado' },
             { value: '+500', label: 'Productos disponibles' },
@@ -105,7 +105,7 @@ export default function WhyChooseUs() {
               <div className="text-gray-400 text-sm mt-2">{stat.label}</div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

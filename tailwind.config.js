@@ -6,9 +6,8 @@ export default {
       colors: {
         primary: '#f24a49',
         secondary: '#000000',
-        accent: '#582b02',
+        accent: '#74020c',
         neutral: '#f2c979',
-        support: '#74020c',
       },
       fontFamily: {
         heavy: ['"Franklin Gothic Heavy"', 'sans-serif'],
@@ -18,6 +17,9 @@ export default {
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
         'fade-in': 'fadeIn 0.8s ease-out forwards',
+        'marquee': 'marquee 35s linear infinite',
+        'ambient-orbit': 'ambientOrbit 11s ease-in-out infinite',
+        'ambient-orbit-alt': 'ambientOrbitAlt 15s ease-in-out infinite',
       },
       keyframes: {
         fadeInUp: {
@@ -27,6 +29,26 @@ export default {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        ambientOrbit: {
+          '0%':   { transform: 'translate(0px, 0px) scale(1)' },
+          '20%':  { transform: 'translate(220px, -90px) scale(1.12)' },
+          '45%':  { transform: 'translate(400px, 60px) scale(0.93)' },
+          '65%':  { transform: 'translate(260px, 150px) scale(1.07)' },
+          '85%':  { transform: 'translate(70px, 100px) scale(0.96)' },
+          '100%': { transform: 'translate(0px, 0px) scale(1)' },
+        },
+        ambientOrbitAlt: {
+          '0%':   { transform: 'translate(0px, 0px) scale(1)' },
+          '15%':  { transform: 'translate(-180px, 60px) scale(0.92)' },
+          '40%':  { transform: 'translate(-320px, -80px) scale(1.1)' },
+          '70%':  { transform: 'translate(-120px, -140px) scale(0.97)' },
+          '90%':  { transform: 'translate(60px, -60px) scale(1.05)' },
+          '100%': { transform: 'translate(0px, 0px) scale(1)' },
         },
       },
     },
