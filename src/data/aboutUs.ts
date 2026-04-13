@@ -1,5 +1,3 @@
-import { InstagramEmbed } from 'react-social-media-embed';
-
 export interface Milestone {
   year: string;
   title: string;
