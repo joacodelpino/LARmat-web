@@ -1,76 +1,9 @@
 import { useState } from 'react';
 import { MessageCircle, Instagram, Facebook, Heart } from 'lucide-react';
 import { SUCURSALES, REDES } from '../data/info';
+import { milestones, instagramPosts } from '../data/aboutUs';
 import Reveal from './Reveal';
 
-// ── Data ─────────────────────────────────────────────────────────────────────
-const milestones = [
-  {
-    year: '1980',
-    title: 'Nuestros inicios',
-    description:
-      'LAR nació en La Rioja con una pequeña distribuidora familiar, apostando al crecimiento de la región y sus constructores.',
-  },
-  {
-    year: '1990s',
-    title: 'Expansión regional',
-    description:
-      'Ampliamos stock y llegamos a nuevos barrios y localidades, consolidándonos como referentes del sector.',
-  },
-  {
-    year: '2000s',
-    title: 'Nuevas sucursales',
-    description:
-      'Abrimos nuevos puntos de venta para estar más cerca de cada obra, reduciendo tiempos y costos logísticos.',
-  },
-  {
-    year: 'Hoy',
-    title: '+40 años de experiencia',
-    description:
-      'Somos referentes del rubro con 3 sucursales, más de 500 productos y miles de clientes satisfechos en toda la provincia.',
-  },
-];
-
-const instagramPosts = [
-  {
-    image:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop',
-    likes: 87,
-    caption: 'Stock completo para tu próxima obra',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=400&auto=format&fit=crop',
-    likes: 134,
-    caption: 'Calidad en cada entrega',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=400&auto=format&fit=crop',
-    likes: 61,
-    caption: 'Materiales para grandes proyectos',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?q=80&w=400&auto=format&fit=crop',
-    likes: 109,
-    caption: 'Tu obra en las mejores manos',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1541976590-713941681591?q=80&w=400&auto=format&fit=crop',
-    likes: 93,
-    caption: 'Asesoramiento experto sin costo',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=400&auto=format&fit=crop',
-    likes: 152,
-    caption: 'Construimos La Rioja juntos',
-  },
-];
-
-// ── Component ────────────────────────────────────────────────────────────────
 export default function AboutUs() {
   const [marqueePaused, setMarqueePaused] = useState(false);
 
@@ -139,7 +72,7 @@ export default function AboutUs() {
             <Reveal delay={120} className="relative">
               <div className="overflow-hidden rounded-sm shadow-xl group">
                 <img
-                  src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1517089152318-42ec560349c0?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Equipo LAR Materiales de Construcción"
                   className="w-full h-80 lg:h-[440px] object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
