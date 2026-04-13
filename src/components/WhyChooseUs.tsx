@@ -1,31 +1,4 @@
-import { Award, Headphones as HeadphonesIcon, Truck, Package } from 'lucide-react';
-
-const benefits = [
-  {
-    icon: <Award size={36} />,
-    title: 'Más de 40 años de experiencia',
-    description:
-      'Décadas de trayectoria nos avalan. Conocemos cada detalle del rubro y las necesidades reales de cada obra.',
-  },
-  {
-    icon: <HeadphonesIcon size={36} />,
-    title: 'Asesoramiento personalizado',
-    description:
-      'Nuestro equipo especializado te acompaña desde el presupuesto hasta la entrega para que elijas los materiales correctos.',
-  },
-  {
-    icon: <Truck size={36} />,
-    title: 'Envíos sin cargo',
-    description:
-      'Llevamos tus materiales directamente a la obra sin costo adicional. Más comodidad, menos gestión para vos.',
-  },
-  {
-    icon: <Package size={36} />,
-    title: 'Amplio stock permanente',
-    description:
-      'Mantenemos inventario constante de los materiales más demandados para que tu obra nunca se detenga.',
-  },
-];
+import { benefits } from '../data/benefits';
 
 export default function WhyChooseUs() {
   return (
@@ -80,7 +53,7 @@ export default function WhyChooseUs() {
                 className="group bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/8 rounded-sm p-6 transition-all duration-300"
               >
                 <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
-                  {benefit.icon}
+                  <benefit.icon size={36} />
                 </div>
                 <h3 className="text-white font-bold text-base mb-2 leading-snug">{benefit.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>

@@ -1,49 +1,4 @@
-import { Layers, Wrench, Grid3x3 as Grid3X3, Bath, Home as HomeIcon, Paintbrush } from 'lucide-react';
-
-const categories = [
-  {
-    icon: <Layers size={32} />,
-    title: 'Materiales de Construcción',
-    description: 'Cemento, cal, arena, mezclas y todo lo esencial para tu obra.',
-    image:
-      'https://images.pexels.com/photos/209315/pexels-photo-209315.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-  },
-  {
-    icon: <Wrench size={32} />,
-    title: 'Hierros y Estructuras',
-    description: 'Varillas, mallas, perfiles y estructuras metálicas de alta resistencia.',
-    image:
-      'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-  },
-  {
-    icon: <Grid3X3 size={32} />,
-    title: 'Revestimientos',
-    description: 'Cerámicos y porcelanatos para interiores y exteriores de alta calidad.',
-    image:
-      'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-  },
-  {
-    icon: <Bath size={32} />,
-    title: 'Baños y Grifería',
-    description: 'Sanitarios, grifería y accesorios para baños modernos y funcionales.',
-    image:
-      'https://images.pexels.com/photos/1454806/pexels-photo-1454806.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-  },
-  {
-    icon: <HomeIcon size={32} />,
-    title: 'Construcción en Seco',
-    description: 'Paneles, perfiles y sistemas para tabiques y cielorrasos.',
-    image:
-      'https://images.pexels.com/photos/3990359/pexels-photo-3990359.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-  },
-  {
-    icon: <Paintbrush size={32} />,
-    title: 'Pinturería',
-    description: 'Pinturas, esmaltes, impermeabilizantes y accesorios para todo tipo de superficies.',
-    image:
-      'https://images.pexels.com/photos/1669754/pexels-photo-1669754.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
-  },
-];
+import { categories } from '../data/categories';
 
 export default function ProductCategories() {
   return (
@@ -81,7 +36,7 @@ export default function ProductCategories() {
               {/* Icono arriba */}
               <div className="absolute top-0 left-0 right-0 p-4">
                 <div className="text-primary [filter:drop-shadow(0_0_8px_rgba(242,74,73,0.5))]">
-                  {cat.icon}
+                  <cat.icon size={32} />
                 </div>
               </div>
               {/* Texto abajo */}

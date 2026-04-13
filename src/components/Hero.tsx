@@ -1,5 +1,5 @@
 import { MessageCircle, ChevronDown } from 'lucide-react';
-import larLogo from './assets/LAR Logo+texto blanco.png';
+import larLogo from '../assets/LAR Logo+texto blanco.png';
 
 export default function Hero() {
   return (
