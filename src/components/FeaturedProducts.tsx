@@ -1,5 +1,6 @@
 import { CheckCircle, Sparkles, MessageCircle } from 'lucide-react';
 import { products } from '../data/products';
+import { SUCURSALES } from '../data/info';
 
 export default function FeaturedProducts() {
   return (
@@ -21,7 +22,7 @@ export default function FeaturedProducts() {
           {products.map((product) => (
             <div
               key={product.name}
-              className="group bg-white rounded-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-primary/30"
+              className="group bg-white rounded-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-primary/30 flex flex-col"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -48,11 +49,11 @@ export default function FeaturedProducts() {
                   </span>
                 </div>
               </div>
-              <div className="p-5">
+              <div className="p-5 flex flex-col flex-1">
                 <h3 className="text-secondary font-bold text-lg mb-1">{product.name}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4">{product.description}</p>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{product.description}</p>
                 <a
-                  href={`https://wa.me/5493804000000?text=Hola! Me interesa consultar sobre ${encodeURIComponent(product.name)}`}
+                  href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Me interesa consultar sobre ${encodeURIComponent(product.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-primary hover:text-support font-semibold text-sm transition-colors group/link"
@@ -68,7 +69,7 @@ export default function FeaturedProducts() {
 
         <div className="text-center mt-10">
           <a
-            href="https://wa.me/5493804000000?text=Hola! Quiero ver el catálogo completo de productos."
+            href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero ver el catálogo completo de productos.`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-3 rounded-sm transition-all duration-300"

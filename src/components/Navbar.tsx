@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Phone, Menu, X } from 'lucide-react';
+import { SUCURSALES } from '../data/info';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,14 +51,14 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href="tel:+5493804000000"
+            href={SUCURSALES.capitalDorrego.telHref}
             className="flex items-center gap-2 text-neutral text-sm font-semibold hover:text-white transition-colors"
           >
             <Phone size={16} />
-            <span>(380) 400-0000</span>
+            <span>{SUCURSALES.capitalDorrego.tel}</span>
           </a>
           <a
-            href="https://wa.me/5493804000000"
+            href={SUCURSALES.capitalDorrego.wppHref}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary hover:bg-support text-white text-sm font-bold px-4 py-2 rounded-sm transition-colors duration-200"
@@ -88,7 +89,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="https://wa.me/5493804000000"
+            href={SUCURSALES.capitalDorrego.wppHref}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary text-white text-sm font-bold px-4 py-3 rounded-sm text-center mt-2"

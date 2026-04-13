@@ -1,5 +1,6 @@
 import { MapPin, Phone, MessageCircle, Clock } from 'lucide-react';
 import { branches } from '../data/branches';
+import { SUCURSALES } from '../data/info';
 
 export default function Locations() {
   return (
@@ -66,7 +67,7 @@ export default function Locations() {
 
                 <div className="flex gap-3">
                   <a
-                    href={`https://wa.me/5493804000000?text=Hola! Quiero información sobre la sucursal ${branch.name}`}
+                    href={`${branch.wppHref}?text=Hola! Quiero información sobre la sucursal ${branch.name}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-support text-white text-sm font-bold py-2.5 rounded-sm transition-colors"
@@ -75,7 +76,7 @@ export default function Locations() {
                     Contactar
                   </a>
                   <a
-                    href={`tel:${branch.phone}`}
+                    href={branch.telHref}
                     className="flex-1 flex items-center justify-center gap-2 border border-gray-300 hover:border-primary text-gray-600 hover:text-primary text-sm font-semibold py-2.5 rounded-sm transition-all"
                   >
                     <Phone size={15} />
@@ -95,7 +96,7 @@ export default function Locations() {
             </p>
           </div>
           <a
-            href="https://wa.me/5493804000000?text=Hola! Quiero consultar precios por volumen."
+            href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero consultar precios por volumen.`}
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-accent text-white font-bold px-6 py-3 rounded-sm transition-colors"

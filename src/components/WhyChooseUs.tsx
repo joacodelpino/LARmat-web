@@ -1,9 +1,29 @@
+import { useState, useRef } from 'react';
 import { benefits } from '../data/benefits';
+import { SUCURSALES } from '../data/info';
 
 export default function WhyChooseUs() {
+  const [mousePos, setMousePos] = useState({ x: -9999, y: -9999 });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  const handleMouseLeave = () => setMousePos({ x: -9999, y: -9999 });
+
   return (
-    <section id="nosotros" className="py-20 bg-secondary relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
+    <section
+      id="nosotros"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="py-20 bg-secondary relative overflow-hidden"
+    >
+      {/* Grilla base tenue */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
@@ -12,6 +32,17 @@ export default function WhyChooseUs() {
           }}
         />
       </div>
+
+      {/* Grilla iluminada por cursor */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-200"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(85, 7, 7, 0.7) 40px, rgba(85, 7, 7, 0.7) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(85, 7, 7, 0.7) 40px, rgba(85, 7, 7, 0.7) 41px)',
+          maskImage: `radial-gradient(circle 200px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 90%)`,
+          WebkitMaskImage: `radial-gradient(circle 200px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 90%)`,
+        }}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -30,7 +61,7 @@ export default function WhyChooseUs() {
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/5493804000000"
+                href={SUCURSALES.capitalDorrego.wppHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-primary hover:bg-support text-white font-bold px-7 py-3.5 rounded-sm transition-colors text-center"
@@ -46,13 +77,13 @@ export default function WhyChooseUs() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 bg-secondary">
             {benefits.map((benefit) => (
               <div
                 key={benefit.title}
-                className="group bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/8 rounded-sm p-6 transition-all duration-300"
+                className="group bg-white/5 border-2 border-white/15 hover:border-primary/100 hover:bg-white/16 rounded-md p-6 transition-all duration-300"
               >
-                <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
+                <div className="text-primary mb-4 group-hover:scale-110 transition-all duration-300 inline-block [filter:drop-shadow(0_0_6px_rgba(242,74,73,0.25))] group-hover:[filter:drop-shadow(0_0_14px_rgba(242,74,73,0.7))]">
                   <benefit.icon size={36} />
                 </div>
                 <h3 className="text-white font-bold text-base mb-2 leading-snug">{benefit.title}</h3>

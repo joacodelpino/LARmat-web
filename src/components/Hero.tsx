@@ -1,5 +1,6 @@
 import { MessageCircle, ChevronDown } from 'lucide-react';
 import larLogo from '../assets/LAR Logo+texto blanco.png';
+import { SUCURSALES } from '../data/info';
 
 export default function Hero() {
   return (
@@ -43,7 +44,7 @@ export default function Hero() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
           <a
-            href="https://wa.me/5493804000000"
+            href={SUCURSALES.capitalDorrego.wppHref}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-3 bg-primary hover:bg-support text-white font-bold text-base sm:text-lg px-8 py-4 rounded-sm transition-all duration-300 shadow-xl"
@@ -52,7 +53,7 @@ export default function Hero() {
             Consultar por WhatsApp
           </a>
           <a
-            href="tel:+5493804000000"
+            href={SUCURSALES.capitalDorrego.telHref}
             className="flex items-center gap-2 ring-2 ring-inset ring-neutral text-neutral hover:bg-neutral hover:text-black font-bold text-base sm:text-lg px-8 py-4 rounded-sm transition-all duration-300"
           >
             Llamar ahora
