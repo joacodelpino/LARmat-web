@@ -13,7 +13,7 @@ export const products: Product[] = [
     category: 'Ladrillos',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://images.pexels.com/photos/1309897/pexels-photo-1309897.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
+    image: 'https://www.palmarsa.com.ar/multimedia/products/celerlosa/gallery/03.jpg',
     description: 'Ladrillo cerámico hueco ideal para paredes interiores y exteriores.',
   },
   {
@@ -21,7 +21,7 @@ export const products: Product[] = [
     category: 'Ladrillos',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
+    image: 'https://nodomateriales.com/wp-content/uploads/2024/08/05LADR11_1-1.jpg',
     description: 'Alta resistencia estructural para muros portantes.',
   },
   {
@@ -29,7 +29,7 @@ export const products: Product[] = [
     category: 'Revestimientos',
     badge: 'Nuevos ingresos',
     badgeType: 'new',
-    image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
+    image: 'https://images.pexels.com/photos/4249687/pexels-photo-4249687.jpeg',
     description: 'Amplia variedad de formatos y diseños para todo tipo de ambientes.',
   },
   {
@@ -37,7 +37,7 @@ export const products: Product[] = [
     category: 'Construcción en Seco',
     badge: 'Nuevos ingresos',
     badgeType: 'new',
-    image: 'https://images.pexels.com/photos/3990359/pexels-photo-3990359.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
+    image: 'https://www.cerrosud.com/wp-content/uploads/2022/09/21-izmir-chiaro.jpg',
     description: 'Sistemas de tabique seco para construcciones rápidas y eficientes.',
   },
   {
@@ -45,7 +45,7 @@ export const products: Product[] = [
     category: 'Materiales',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://images.pexels.com/photos/2098624/pexels-photo-2098624.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
+    image: 'https://chavezcom.com/baldosones-bordes-atermicos/losetas-baldosones-para-piletas.jpg',
     description: 'Aislación térmica y acústica de alto rendimiento.',
   },
   {
@@ -53,7 +53,7 @@ export const products: Product[] = [
     category: 'Hierros',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=500&q=80',
+    image: 'https://images.cerymatlaplata.com.ar/products/5d793ff3620481568227315.jpg',
     description: 'Varillas corrugadas certificadas para estructuras de hormigón armado.',
   },
 ];

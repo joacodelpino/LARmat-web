@@ -22,7 +22,7 @@ export default function ProductCategories() {
               key={cat.title}
               className="group relative rounded-sm overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-[calc(50%-8px)] md:w-[calc(33.333%-14px)] xl:w-[calc(16.666%-17px)]"
             >
-              <div className="h-52 sm:h-60 lg:h-64 relative brightness-50">
+              <div className="h-52 sm:h-60 lg:h-64 relative brightness-[0.4] grayscale-[0.5]">
                 <img
                   src={cat.image}
                   alt={cat.title}
@@ -35,7 +35,7 @@ export default function ProductCategories() {
               </div>
               {/* Icono arriba */}
               <div className="absolute top-0 left-0 right-0 p-4">
-                <div className="text-primary [filter:drop-shadow(0_0_8px_rgba(242,74,73,0.5))]">
+                <div className="text-primary transition-all duration-300 inline-block [filter:drop-shadow(0_0_6px_rgba(242,74,73,0))] group-hover:[filter:drop-shadow(0_0_10px_rgba(242,74,73,0.3))]">
                   <cat.icon size={32} />
                 </div>
               </div>
