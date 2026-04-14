@@ -178,18 +178,26 @@ export default function AboutUs() {
 
           {/* Carrusel */}
           <Reveal>
-            <div className={`bg-white/5 border border-white/10 rounded-sm p-8 sm:p-10 text-center overflow-hidden ${nudging ? 'animate-card-nudge' : ''}`}>
-              <div
-                key={current}
-                className={direction === 'right' ? 'animate-slide-in-right' : 'animate-slide-in-left'}
-              >
-                <p className="text-gray-300 text-lg sm:text-xl leading-relaxed italic">
-                  "{TESTIMONIALS[current].text}"
-                </p>
-                <div className="mt-6">
-                  <span className="text-white font-bold block">{TESTIMONIALS[current].name}</span>
-                  <span className="text-primary text-sm">{TESTIMONIALS[current].role}</span>
-                </div>
+            <div className={`bg-white/5 border border-white/10 rounded-sm p-8 sm:p-10 text-center overflow-hidden transition-all duration-500 ${nudging ? 'animate-card-nudge' : ''}`}>
+              <div className="grid grid-cols-1 grid-rows-1 items-center">
+                {TESTIMONIALS.map((t, i) => (
+                  <div
+                    key={i}
+                    className={`col-start-1 row-start-1 transition-all duration-500 ease-in-out ${
+                      i === current
+                        ? 'opacity-100 translate-x-0'
+                        : `opacity-0 pointer-events-none ${direction === 'right' ? 'translate-x-20' : '-translate-x-20'}`
+                    }`}
+                  >
+                    <p className="text-gray-300 text-lg sm:text-xl leading-relaxed italic">
+                      "{t.text}"
+                    </p>
+                    <div className="mt-6">
+                      <span className="text-white font-bold block">{t.name}</span>
+                      <span className="text-primary text-sm">{t.role}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
