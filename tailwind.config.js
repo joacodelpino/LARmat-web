@@ -20,6 +20,9 @@ export default {
         'marquee': 'marquee 35s linear infinite',
         'ambient-orbit': 'ambientOrbit 11s ease-in-out infinite',
         'ambient-orbit-alt': 'ambientOrbitAlt 15s ease-in-out infinite',
+        'slide-in-right': 'slideInRight 0.35s ease-out forwards',
+        'slide-in-left': 'slideInLeft 0.35s ease-out forwards',
+        'card-nudge': 'cardNudge 0.3s ease-out forwards',
       },
       keyframes: {
         fadeInUp: {
@@ -29,6 +32,19 @@ export default {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        slideInRight: {
+          '0%':   { opacity: '0', transform: 'translateX(40px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        slideInLeft: {
+          '0%':   { opacity: '0', transform: 'translateX(-40px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        cardNudge: {
+          '0%':   { transform: 'scale(1)' },
+          '40%':  { transform: 'scale(0.97)' },
+          '100%': { transform: 'scale(1)' },
         },
         marquee: {
           '0%': { transform: 'translateX(0)' },
