@@ -54,9 +54,9 @@ export default function AboutUs() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            filter: 'grayscale(100%) blur(3px) brightness(0.85)',
+            filter: 'grayscale(100%) brightness(0.7)',
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1920&auto=format&fit=crop')",
+              "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=75&w=1280&auto=format&fit=crop')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/70 to-accent/60" />
