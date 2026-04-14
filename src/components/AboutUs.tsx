@@ -25,24 +25,31 @@ export default function AboutUs() {
         className="relative h-72 sm:h-80 lg:h-96 flex items-center justify-center overflow-hidden"
       >
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-fade-in"
           style={{
             filter: 'grayscale(100%) brightness(0.7)',
             backgroundImage:
               "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=75&w=1280&auto=format&fit=crop')",
+            animation: 'fadeIn 1.2s ease-out forwards, zoomIn 20s ease-out infinite alternate',
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/70 to-accent/60" />
-        <div className="relative z-10 text-center px-4 animate-fade-in-up">
-          <span className="text-primary text-sm font-bold uppercase tracking-widest">
-            LAR Materiales de Construcción
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-2 font-heavy [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.4))]">
-            Sobre <span className="text-primary">nosotros</span>
-          </h1>
-          <p className="text-gray-300 mt-4 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Más de 40 años construyendo La Rioja, ladrillo a ladrillo.
-          </p>
+        <div className="relative z-10 text-center px-4">
+          <Reveal>
+            <span className="block text-primary text-sm font-bold uppercase tracking-widest">
+              LAR Materiales de Construcción
+            </span>
+          </Reveal>
+          <Reveal delay={120}>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-2 font-heavy [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.4))]">
+              Sobre <span className="text-primary">nosotros</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={240}>
+            <p className="text-gray-300 mt-4 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+              Más de 40 años construyendo La Rioja, ladrillo a ladrillo.
+            </p>
+          </Reveal>
         </div>
       </section>
 

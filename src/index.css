@@ -27,6 +27,11 @@
     font-display: swap;
   }
 
+  @keyframes zoomIn {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+  }
+
   html {
     scroll-behavior: smooth;
   }
