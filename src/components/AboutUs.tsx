@@ -2,35 +2,8 @@ import { useState } from 'react';
 import { MessageCircle, Instagram, Facebook, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SUCURSALES, REDES } from '../data/info';
 import { TESTIMONIALS } from '../data/testimonials';
+import { milestones, instagramPosts } from '../data/aboutUs';
 import Reveal from './Reveal';
-
-// ── Data ─────────────────────────────────────────────────────────────────────
-const milestones = [
-  {
-    year: '1980',
-    title: 'Nuestros inicios',
-    description:
-      'LAR nació en La Rioja con una pequeña distribuidora familiar, apostando al crecimiento de la región y sus constructores.',
-  },
-  {
-    year: '1990s',
-    title: 'Expansión regional',
-    description:
-      'Ampliamos stock y llegamos a nuevos barrios y localidades, consolidándonos como referentes del sector.',
-  },
-  {
-    year: '2000s',
-    title: 'Nuevas sucursales',
-    description:
-      'Abrimos nuevos puntos de venta para estar más cerca de cada obra, reduciendo tiempos y costos logísticos.',
-  },
-  {
-    year: 'Hoy',
-    title: '+40 años de experiencia',
-    description:
-      'Somos referentes del rubro con 3 sucursales, más de 500 productos y miles de clientes satisfechos en toda la provincia.',
-  },
-];
 
 // ── Component ────────────────────────────────────────────────────────────────
 export default function AboutUs() {
@@ -109,7 +82,7 @@ export default function AboutUs() {
             <Reveal delay={120} className="relative">
               <div className="overflow-hidden rounded-sm shadow-xl group">
                 <img
-                  src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1517089152318-42ec560349c0?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Equipo LAR Materiales de Construcción"
                   className="w-full h-80 lg:h-[440px] object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
