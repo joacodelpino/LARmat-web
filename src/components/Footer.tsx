@@ -10,15 +10,26 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <Reveal className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="bg-primary rounded-sm px-2 py-1">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="flex items-center gap-2 mb-4 group cursor-pointer w-fit"
+            >
+              <div className="bg-primary rounded-sm px-2 py-1 transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(242,74,73,0.3)]">
                 <span className="text-white font-black text-xl tracking-tight">LAR</span>
               </div>
               <div>
-                <span className="text-white font-bold text-sm leading-tight block">Materiales de</span>
-                <span className="text-neutral font-bold text-sm leading-tight block">Construcción</span>
+                <span className="text-white font-bold text-sm leading-tight block group-hover:text-primary transition-colors duration-300">
+                  Materiales de
+                </span>
+                <span className="text-neutral font-bold text-sm leading-tight block group-hover:text-white transition-colors duration-300">
+                  Construcción
+                </span>
               </div>
-            </div>
+            </a>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
               Más de 40 años siendo el proveedor de confianza para la construcción en La Rioja,
               Argentina.
@@ -85,17 +96,27 @@ export default function Footer() {
             </h4>
             <div className="space-y-5">
               {[
-                { name: 'Capital', address: SUCURSALES.capitalDorrego.address },
-                { name: 'Parque Industrial', address: SUCURSALES.capitalParqueIndustrial.address },
-                { name: 'Chilecito', address: SUCURSALES.chilecito.address },
+                { name: 'Capital', address: SUCURSALES.capitalDorrego.address, href:SUCURSALES.capitalDorrego.mapsHref},
+                { name: 'Parque Industrial', address: SUCURSALES.capitalParqueIndustrial.address, href:SUCURSALES.capitalParqueIndustrial.mapsHref },
+                { name: 'Chilecito', address: SUCURSALES.chilecito.address, href:SUCURSALES.chilecito.mapsHref},
               ].map((branch) => (
-                <div key={branch.name}>
-                  <p className="text-neutral text-sm font-semibold">{branch.name}</p>
+                <a
+                  key={branch.name}
+                  href={branch.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group transition-colors"
+                >
+                  <p className="text-neutral text-sm font-semibold group-hover:text-primary transition-colors">
+                    {branch.name}
+                  </p>
                   <div className="flex items-start gap-2 mt-1">
-                    <MapPin size={13} className="text-gray-500 mt-0.5 shrink-0" />
-                    <p className="text-gray-400 text-xs">{branch.address}</p>
+                    <MapPin size={13} className="text-gray-500 mt-0.5 shrink-0 group-hover:text-primary transition-colors" />
+                    <p className="text-gray-400 text-xs group-hover:text-neutral transition-colors underline-offset-4 group-hover:underline">
+                      {branch.address}
+                    </p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </Reveal>
@@ -112,8 +133,19 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-sm bg-white/5 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
                   <Phone size={14} className="text-primary" />
                 </div>
-                {SUCURSALES.capitalDorrego.tel} — Capital
+                {SUCURSALES.capitalDorrego.tel} — Capital. Dorrego, 199.
               </a>
+
+              <a
+                href={SUCURSALES.capitalParqueIndustrial.telHref}
+                className="flex items-center gap-3 text-gray-400 hover:text-neutral text-sm transition-colors group"
+              >
+                <div className="w-8 h-8 rounded-sm bg-white/5 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                  <Phone size={14} className="text-primary" />
+                </div>
+                {SUCURSALES.capitalParqueIndustrial.tel} — Capital. Av. Matienzo S/N.
+              </a>
+
               <a
                 href={SUCURSALES.chilecito.telHref}
                 className="flex items-center gap-3 text-gray-400 hover:text-neutral text-sm transition-colors group"
@@ -121,7 +153,7 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-sm bg-white/5 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
                   <Phone size={14} className="text-primary" />
                 </div>
-                {SUCURSALES.chilecito.tel} — Chilecito
+                {SUCURSALES.chilecito.tel} — Chilecito. La Plata, 403.
               </a>
             </div>
 
