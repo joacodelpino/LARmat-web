@@ -18,6 +18,7 @@ export default function Navbar() {
     { label: 'Por qué elegirnos', href: '#nosotros' },
     { label: 'Sobre nosotros', href: '#sobre-nosotros' },
     { label: 'Sucursales', href: '#sucursales' },
+    { label: 'Preguntas frecuentes', href: '#preguntas-frecuentes' },
     { label: 'Contacto', href: '#contacto' },
   ];
 

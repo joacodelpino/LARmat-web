@@ -41,9 +41,9 @@ export default function AboutUs() {
             </span>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-2 font-heavy [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.4))]">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-2 font-heavy [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.4))]">
               Sobre <span className="text-primary">nosotros</span>
-            </h1>
+            </h2>
           </Reveal>
           <Reveal delay={240}>
             <p className="text-gray-300 mt-4 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
