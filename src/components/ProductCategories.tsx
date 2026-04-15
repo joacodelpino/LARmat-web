@@ -35,6 +35,12 @@ export default function ProductCategories() {
                   onMouseLeave={() => {
                     if (window.matchMedia('(hover: hover)').matches) setActiveIdx(null);
                   }}
+                  onClick={() => {
+                    // On mobile (no hover), toggle description visibility
+                    if (!window.matchMedia('(hover: hover)').matches) {
+                      setActiveIdx(activeIdx === i ? null : i);
+                    }
+                  }}
                 >
                   <div className="h-52 sm:h-60 lg:h-64 relative brightness-[0.4] grayscale-[0.5]">
                     <img
@@ -68,8 +74,8 @@ export default function ProductCategories() {
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <h3 className="text-white font-bold text-sm sm:text-base leading-tight">{cat.title}</h3>
                     <p
-                      className={`text-gray-300 text-xs mt-1 leading-snug transition-opacity duration-300 ${
-                        active ? 'opacity-100' : 'opacity-100 md:opacity-0'
+                      className={`text-gray-300 text-xs mt-1 leading-snug transition-all duration-300 ${
+                        active ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
                       }`}
                     >
                       {cat.description}

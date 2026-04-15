@@ -17,12 +17,12 @@ export const products: Product[] = [
     description: 'Ladrillo cerámico hueco ideal para paredes interiores y exteriores.',
   },
   {
-    name: 'Ladrillos Portantes',
-    category: 'Ladrillos',
+    name: 'Cemento Loma Negra',
+    category: 'Cementos',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://nodomateriales.com/wp-content/uploads/2024/08/05LADR11_1-1.jpg',
-    description: 'Alta resistencia estructural para muros portantes.',
+    image: 'https://corralon.net/wp-content/uploads/2025/06/Palet-CEMENTO-LOMA-NEGRA-CPC-30-x-50-kg.png',
+    description: 'Cemento portland en presentacion de 25 y 50kg de alta calidad y versatilidad.',
   },
   {
     name: 'Cerámicos de Piso',
