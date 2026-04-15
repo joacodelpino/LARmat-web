@@ -1,78 +1,21 @@
 import { useState } from 'react';
-import { MessageCircle, Instagram, Facebook, Heart } from 'lucide-react';
+import { MessageCircle, Instagram, Facebook, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SUCURSALES, REDES } from '../data/info';
+import { TESTIMONIALS } from '../data/testimonials';
+import { milestones, instagramPosts } from '../data/aboutUs';
 import Reveal from './Reveal';
-
-// ── Data ─────────────────────────────────────────────────────────────────────
-const milestones = [
-  {
-    year: '1980',
-    title: 'Nuestros inicios',
-    description:
-      'LAR nació en La Rioja con una pequeña distribuidora familiar, apostando al crecimiento de la región y sus constructores.',
-  },
-  {
-    year: '1990s',
-    title: 'Expansión regional',
-    description:
-      'Ampliamos stock y llegamos a nuevos barrios y localidades, consolidándonos como referentes del sector.',
-  },
-  {
-    year: '2000s',
-    title: 'Nuevas sucursales',
-    description:
-      'Abrimos nuevos puntos de venta para estar más cerca de cada obra, reduciendo tiempos y costos logísticos.',
-  },
-  {
-    year: 'Hoy',
-    title: '+40 años de experiencia',
-    description:
-      'Somos referentes del rubro con 3 sucursales, más de 500 productos y miles de clientes satisfechos en toda la provincia.',
-  },
-];
-
-const instagramPosts = [
-  {
-    image:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop',
-    likes: 87,
-    caption: 'Stock completo para tu próxima obra',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=400&auto=format&fit=crop',
-    likes: 134,
-    caption: 'Calidad en cada entrega',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=400&auto=format&fit=crop',
-    likes: 61,
-    caption: 'Materiales para grandes proyectos',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?q=80&w=400&auto=format&fit=crop',
-    likes: 109,
-    caption: 'Tu obra en las mejores manos',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1541976590-713941681591?q=80&w=400&auto=format&fit=crop',
-    likes: 93,
-    caption: 'Asesoramiento experto sin costo',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=400&auto=format&fit=crop',
-    likes: 152,
-    caption: 'Construimos La Rioja juntos',
-  },
-];
 
 // ── Component ────────────────────────────────────────────────────────────────
 export default function AboutUs() {
-  const [marqueePaused, setMarqueePaused] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
+  const [nudging, setNudging] = useState(false);
+
+  const nudge = () => { setNudging(false); requestAnimationFrame(() => { requestAnimationFrame(() => setNudging(true)); }); };
+
+  const prev = () => { nudge(); setDirection('left');  setCurrent((c) => (c - 1 + TESTIMONIALS.length) % TESTIMONIALS.length); };
+  const next = () => { nudge(); setDirection('right'); setCurrent((c) => (c + 1) % TESTIMONIALS.length); };
+  const goto = (i: number) => { nudge(); setDirection(i > current ? 'right' : 'left'); setCurrent(i); };
 
   return (
     <>
@@ -82,24 +25,31 @@ export default function AboutUs() {
         className="relative h-72 sm:h-80 lg:h-96 flex items-center justify-center overflow-hidden"
       >
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-fade-in"
           style={{
-            filter: 'grayscale(100%) blur(3px) brightness(0.85)',
+            filter: 'grayscale(100%) brightness(0.7)',
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1920&auto=format&fit=crop')",
+              "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=75&w=1280&auto=format&fit=crop')",
+            animation: 'fadeIn 1.2s ease-out forwards, zoomIn 20s ease-out infinite alternate',
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/70 to-accent/60" />
-        <div className="relative z-10 text-center px-4 animate-fade-in-up">
-          <span className="text-primary text-sm font-bold uppercase tracking-widest">
-            LAR Materiales de Construcción
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-2 font-heavy [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.4))]">
-            Sobre <span className="text-primary">nosotros</span>
-          </h1>
-          <p className="text-gray-300 mt-4 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Más de 40 años construyendo La Rioja, ladrillo a ladrillo.
-          </p>
+        <div className="relative z-10 text-center px-4">
+          <Reveal>
+            <span className="block text-primary text-sm font-bold uppercase tracking-widest">
+              LAR Materiales de Construcción
+            </span>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-2 font-heavy [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.4))]">
+              Sobre <span className="text-primary">nosotros</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={240}>
+            <p className="text-gray-300 mt-4 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+              Más de 40 años construyendo La Rioja, ladrillo a ladrillo.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -139,7 +89,7 @@ export default function AboutUs() {
             <Reveal delay={120} className="relative">
               <div className="overflow-hidden rounded-sm shadow-xl group">
                 <img
-                  src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1517089152318-42ec560349c0?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Equipo LAR Materiales de Construcción"
                   className="w-full h-80 lg:h-[440px] object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
@@ -185,7 +135,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ── Seguinos en redes ────────────────────────────────────────────── */}
+      {/* ── Testimonios ──────────────────────────────────────────────────── */}
       <section className="py-20 bg-secondary relative overflow-hidden">
         {/* Grid base tenue */}
         <div className="absolute inset-0 opacity-5 pointer-events-none">
@@ -198,7 +148,7 @@ export default function AboutUs() {
           />
         </div>
 
-        {/* Ambient glow orbs en loop */}
+        {/* Ambient glow orbs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div
             className="absolute rounded-full animate-ambient-orbit will-change-transform"
@@ -223,85 +173,98 @@ export default function AboutUs() {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center mb-12">
             <span className="text-primary text-sm font-bold uppercase tracking-widest">
-              Instagram & Facebook
+              Testimonios
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2">
-              Seguinos en <span className="text-neutral">redes</span>
+              Lo que dicen <span className="text-neutral">nuestros clientes</span>
             </h2>
-            <p className="text-gray-400 mt-4 max-w-xl mx-auto text-base sm:text-lg">
-              Mirá nuestros últimos trabajos, novedades y promociones.
-            </p>
           </Reveal>
-        </div>
 
-        {/* Marquee */}
-        <div
-          className="relative z-10"
-          onMouseEnter={() => setMarqueePaused(true)}
-          onMouseLeave={() => setMarqueePaused(false)}
-        >
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-secondary to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-secondary to-transparent z-10 pointer-events-none" />
+          {/* Carrusel */}
+          <Reveal>
+            <div className={`bg-white/5 border border-white/10 rounded-sm p-8 sm:p-10 text-center overflow-hidden transition-all duration-500 ${nudging ? 'animate-card-nudge' : ''}`}>
+              <div className="grid grid-cols-1 grid-rows-1 items-center">
+                {TESTIMONIALS.map((t, i) => (
+                  <div
+                    key={i}
+                    className={`col-start-1 row-start-1 transition-all duration-500 ease-in-out ${
+                      i === current
+                        ? 'opacity-100 translate-x-0'
+                        : `opacity-0 pointer-events-none ${direction === 'right' ? 'translate-x-20' : '-translate-x-20'}`
+                    }`}
+                  >
+                    <p className="text-gray-300 text-lg sm:text-xl leading-relaxed italic">
+                      "{t.text}"
+                    </p>
+                    <div className="mt-6">
+                      <span className="text-white font-bold block">{t.name}</span>
+                      <span className="text-primary text-sm">{t.role}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-          <div
-            className="flex gap-4 w-max animate-marquee"
-            style={{ animationPlayState: marqueePaused ? 'paused' : 'running' }}
-          >
-            {[...instagramPosts, ...instagramPosts].map((post, i) => (
+            {/* Controles */}
+            <div className="flex items-center justify-center gap-6 mt-6">
+              <button
+                onClick={prev}
+                aria-label="Anterior"
+                className="p-2 rounded-full border border-white/20 text-white hover:border-primary hover:text-primary transition-colors duration-200"
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              <div className="flex gap-2">
+                {TESTIMONIALS.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goto(i)}
+                    aria-label={`Ir al testimonio ${i + 1}`}
+                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                      i === current ? 'bg-primary' : 'bg-white/30 hover:bg-white/60'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={next}
+                aria-label="Siguiente"
+                className="p-2 rounded-full border border-white/20 text-white hover:border-primary hover:text-primary transition-colors duration-200"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </Reveal>
+
+          {/* CTA redes */}
+          <Reveal>
+            <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                key={i}
                 href={REDES.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-56 shrink-0 rounded-sm overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                className="flex items-center gap-2.5 bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#f77737] hover:opacity-90 text-white font-bold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto justify-center"
               >
-                <img
-                  src={post.image}
-                  alt={post.caption}
-                  className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-white text-xs font-medium leading-snug line-clamp-2">
-                    {post.caption}
-                  </p>
-                  <div className="flex items-center gap-1 mt-1.5 text-white/80 text-xs">
-                    <Heart size={12} className="fill-primary text-primary" />
-                    <span>{post.likes}</span>
-                  </div>
-                </div>
+                <Instagram size={18} />
+                Seguir en Instagram
               </a>
-            ))}
-          </div>
+              <a
+                href={REDES.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 bg-[#1877f2] hover:bg-[#1464d2] text-white font-bold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto justify-center"
+              >
+                <Facebook size={18} />
+                Seguir en Facebook
+              </a>
+            </div>
+          </Reveal>
         </div>
-
-        {/* CTA redes */}
-        <Reveal className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href={REDES.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2.5 bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#f77737] hover:opacity-90 text-white font-bold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto justify-center"
-            >
-              <Instagram size={18} />
-              Seguir en Instagram
-            </a>
-            <a
-              href={REDES.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2.5 bg-[#1877f2] hover:bg-[#1464d2] text-white font-bold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto justify-center"
-            >
-              <Facebook size={18} />
-              Seguir en Facebook
-            </a>
-          </div>
-        </Reveal>
       </section>
     </>
   );

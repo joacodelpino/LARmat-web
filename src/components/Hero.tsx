@@ -8,9 +8,9 @@ export default function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          filter: "grayscale(100%) blur(4px)",
+          filter: "grayscale(100%) brightness(0.65)",
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+            "url('https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?q=75&w=1280&auto=format&fit=crop')",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/65 to-accent/60" />

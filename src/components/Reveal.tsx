@@ -27,6 +27,7 @@ export default function Reveal({ children, delay = 0, className = '' }: RevealPr
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(24px)',
         transition: `opacity 0.55s ease ${delay}ms, transform 0.55s ease ${delay}ms`,
+        willChange: 'opacity, transform',
       }}
     >
       {children}

@@ -1,19 +1,24 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { benefits } from '../data/benefits';
 import { SUCURSALES } from '../data/info';
 import Reveal from './Reveal';
 
 export default function WhyChooseUs() {
-  const [mousePos, setMousePos] = useState({ x: -9999, y: -9999 });
   const sectionRef = useRef<HTMLElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = sectionRef.current?.getBoundingClientRect();
     if (!rect) return;
-    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    sectionRef.current?.style.setProperty('--mouse-x', `${x}px`);
+    sectionRef.current?.style.setProperty('--mouse-y', `${y}px`);
+    sectionRef.current?.style.setProperty('--mouse-opacity', '1');
   };
 
-  const handleMouseLeave = () => setMousePos({ x: -9999, y: -9999 });
+  const handleMouseLeave = () => {
+    sectionRef.current?.style.setProperty('--mouse-opacity', '0');
+  };
 
   return (
     <section
@@ -21,7 +26,7 @@ export default function WhyChooseUs() {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="py-20 bg-secondary relative overflow-hidden"
+      className="py-20 bg-secondary relative overflow-hidden [--mouse-x:-9999px] [--mouse-y:-9999px] [--mouse-opacity:0]"
     >
       {/* Grilla base tenue */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
@@ -36,12 +41,12 @@ export default function WhyChooseUs() {
 
       {/* Grilla iluminada por cursor */}
       <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-200"
+        className="absolute inset-0 pointer-events-none transition-opacity duration-200 opacity-[var(--mouse-opacity)]"
         style={{
           backgroundImage:
             'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(85, 7, 7, 0.7) 40px, rgba(85, 7, 7, 0.7) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(85, 7, 7, 0.7) 40px, rgba(85, 7, 7, 0.7) 41px)',
-          maskImage: `radial-gradient(circle 200px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 90%)`,
-          WebkitMaskImage: `radial-gradient(circle 200px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 90%)`,
+          maskImage: `radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), black 0%, transparent 90%)`,
+          WebkitMaskImage: `radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), black 0%, transparent 90%)`,
         }}
       />
 
