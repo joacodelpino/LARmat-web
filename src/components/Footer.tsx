@@ -173,7 +173,13 @@ export default function Footer() {
       <div className="border-t border-white/10 py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
           <p>© {currentYear} LAR Materiales de Construcción. Todos los derechos reservados.</p>
-          <p>La Rioja, Argentina</p>
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <a href="#" className="hover:text-neutral transition-colors duration-200">Política de privacidad</a>
+            <span className="text-white/10">|</span>
+            <a href="#" className="hover:text-neutral transition-colors duration-200">Términos y condiciones</a>
+            <span className="text-white/10">|</span>
+            <a href="#" className="hover:text-neutral transition-colors duration-200">Política de cookies</a>
+          </div>
         </div>
       </div>
     </footer>

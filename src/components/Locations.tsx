@@ -101,9 +101,7 @@ export default function Locations() {
               </p>
             </div>
             <a
-              href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero consultar precios por volumen.`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contacto"
               className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold px-6 py-3 rounded-sm shadow-xl hover:shadow-[0_0_20px_rgba(0,0,0,0.4)] duration-300 transition-all hover:-translate-y-0.5"
             >
               <MessageCircle size={16} />
