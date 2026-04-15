@@ -45,7 +45,7 @@ export default function CallToAction() {
             "url('https://images.pexels.com/photos/544966/pexels-photo-544966.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80')",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-support/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-primary/20" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -107,7 +107,7 @@ export default function CallToAction() {
 
           {/* ── Columna derecha: Formulario ───────────────────────────────── */}
           <Reveal delay={160}>
-            <div className="bg-white/5 border border-white/10 rounded-sm p-8 sm:p-10 backdrop-blur-sm">
+            <div className="bg-black/40 border border-white/20 rounded-sm p-8 sm:p-10 backdrop-blur-md">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center text-center py-8 gap-4">
                   <CheckCircle size={56} className="text-primary" />
@@ -131,7 +131,7 @@ export default function CallToAction() {
                     <h3 className="text-white font-black text-2xl sm:text-3xl mt-1">
                       Envianos un mensaje
                     </h3>
-                    <p className="text-gray-400 text-sm mt-2 leading-relaxed">
+                    <p className="text-gray-300 text-sm mt-2 leading-relaxed">
                       Completá el formulario y nos ponemos en contacto con vos.
                     </p>
                   </div>
@@ -139,7 +139,7 @@ export default function CallToAction() {
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
                     {/* Nombre */}
                     <div className="relative">
-                      <User size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                      <User size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none" />
                       <input
                         type="text"
                         name="name"
@@ -147,14 +147,14 @@ export default function CallToAction() {
                         onChange={handleChange}
                         required
                         placeholder="Nombre completo"
-                        className="w-full bg-white/10 border border-white/15 hover:border-white/30 focus:border-primary text-white placeholder-gray-400 text-sm rounded-sm pl-10 pr-4 py-3 outline-none transition-colors duration-200"
+                        className="w-full bg-white/5 border border-white/20 hover:border-white/40 focus:bg-white/10 focus:border-primary text-white placeholder-gray-400 text-sm rounded-sm pl-10 pr-4 py-3 outline-none transition-all duration-200"
                       />
                     </div>
 
                     {/* Email y Teléfono en fila */}
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="relative">
-                        <Mail size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                        <Mail size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none" />
                         <input
                           type="email"
                           name="email"
@@ -162,18 +162,18 @@ export default function CallToAction() {
                           onChange={handleChange}
                           required
                           placeholder="Correo electrónico"
-                          className="w-full bg-white/10 border border-white/15 hover:border-white/30 focus:border-primary text-white placeholder-gray-400 text-sm rounded-sm pl-10 pr-4 py-3 outline-none transition-colors duration-200"
+                          className="w-full bg-white/5 border border-white/20 hover:border-white/40 focus:bg-white/10 focus:border-primary text-white placeholder-gray-400 text-sm rounded-sm pl-10 pr-4 py-3 outline-none transition-all duration-200"
                         />
                       </div>
                       <div className="relative">
-                        <PhoneCall size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                        <PhoneCall size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none" />
                         <input
                           type="tel"
                           name="phone"
                           value={form.phone}
                           onChange={handleChange}
                           placeholder="Teléfono (opcional)"
-                          className="w-full bg-white/10 border border-white/15 hover:border-white/30 focus:border-primary text-white placeholder-gray-400 text-sm rounded-sm pl-10 pr-4 py-3 outline-none transition-colors duration-200"
+                          className="w-full bg-white/5 border border-white/20 hover:border-white/40 focus:bg-white/10 focus:border-primary text-white placeholder-gray-400 text-sm rounded-sm pl-10 pr-4 py-3 outline-none transition-all duration-200"
                         />
                       </div>
                     </div>
@@ -187,7 +187,7 @@ export default function CallToAction() {
                         required
                         rows={4}
                         placeholder="Contanos sobre tu proyecto u obra..."
-                        className="w-full bg-white/10 border border-white/15 hover:border-white/30 focus:border-primary text-white placeholder-gray-400 text-sm rounded-sm px-4 py-3 outline-none transition-colors duration-200 resize-none"
+                        className="w-full bg-white/5 border border-white/20 hover:border-white/40 focus:bg-white/10 focus:border-primary text-white placeholder-gray-400 text-sm rounded-sm px-4 py-3 outline-none transition-all duration-200 resize-none"
                       />
                     </div>
 
