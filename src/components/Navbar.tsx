@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { WhatsappLogo } from '@phosphor-icons/react';
 import { SUCURSALES } from '../data/info';
+import { events } from '../lib/analytics';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -101,6 +102,7 @@ export default function Navbar() {
             href={SUCURSALES.capitalDorrego.wppHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => events.whatsappClick('navbar')}
             className="group flex items-center gap-2 bg-primary hover:bg-support text-white text-[13px] xl:text-sm font-bold px-4 xl:px-6 py-2 xl:py-2.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-8px_rgba(242,74,73,0.5)] whitespace-nowrap"
           >
             <WhatsappLogo size={18} weight="fill" className="transition-transform duration-300 group-hover:scale-110" />
@@ -134,6 +136,7 @@ export default function Navbar() {
             href={SUCURSALES.capitalDorrego.wppHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => events.whatsappClick('navbar')}
             className="bg-primary text-white text-sm font-bold px-4 py-3 rounded-sm text-center mt-2"
           >
             Consultar por WhatsApp
