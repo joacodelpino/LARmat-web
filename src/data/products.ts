@@ -29,7 +29,7 @@ export const products: Product[] = [
     category: 'Revestimientos',
     badge: 'Nuevos ingresos',
     badgeType: 'new',
-    image: 'https://images.pexels.com/photos/4249687/pexels-photo-4249687.jpeg',
+    image: 'https://images.pexels.com/photos/4249687/pexels-photo-4249687.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
     description: 'Amplia variedad de formatos y diseños para todo tipo de ambientes.',
   },
   {
