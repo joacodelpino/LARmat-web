@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { MessageCircle, Phone, HardHat, User, Mail, PhoneCall, Send, CheckCircle } from 'lucide-react';
 import { SUCURSALES } from '../data/info';
 import Reveal from './Reveal';
+import { events } from '../lib/analytics';
 
 type FormState = {
   name: string;
@@ -24,6 +25,7 @@ export default function CallToAction() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    events.formSubmit();
     // Simulación frontend — reemplazar con integración real al implementar backend
     setTimeout(() => {
       setLoading(false);
@@ -72,6 +74,7 @@ export default function CallToAction() {
                 href={SUCURSALES.capitalDorrego.wppLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => events.whatsappClick('cta')}
                 className="group flex items-center gap-3 bg-primary hover:bg-support text-white font-bold text-lg px-10 py-4 rounded-sm transition-all duration-300 shadow-2xl hover:shadow-primary/20 hover:scale-105 w-full sm:w-auto justify-center"
               >
                 <MessageCircle size={22} />
@@ -79,6 +82,7 @@ export default function CallToAction() {
               </a>
               <a
                 href={SUCURSALES.capitalDorrego.telHref}
+                onClick={() => events.phoneClick()}
                 className="flex items-center gap-3 border-2 border-neutral text-neutral hover:bg-neutral hover:text-black font-bold text-lg px-10 py-4 rounded-sm transition-all duration-300 w-full sm:w-auto justify-center"
               >
                 <Phone size={20} />
