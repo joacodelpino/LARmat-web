@@ -1,8 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCategories from './components/ProductCategories';
-import FeaturedProducts from './components/FeaturedProducts';
-import WhyChooseUs from './components/WhyChooseUs';
 import AboutUs from './components/AboutUs';
 import Locations from './components/Locations';
 import FrequentQuestions from './components/FrequentQuestions';
@@ -16,8 +14,6 @@ function App() {
       <main>
         <Hero />
         <ProductCategories />
-        <FeaturedProducts />
-        <WhyChooseUs />
         <AboutUs />
         <Locations />
         <FrequentQuestions />

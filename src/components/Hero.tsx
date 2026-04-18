@@ -27,6 +27,7 @@ export default function Hero() {
           src={larLogo}
           alt="LAR Materiales de Construcción"
           className="mx-auto mb-6 w-40 sm:w-52 lg:w-64 animate-fade-in"
+          fetchPriority="high"
         />
 
         <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight mb-6 animate-fade-in-up font-heavy [filter:drop-shadow(1px_1px_2px_rgba(0,0,0,0.40))]">

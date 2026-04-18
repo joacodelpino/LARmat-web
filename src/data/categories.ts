@@ -31,7 +31,7 @@ export const categories: Category[] = [
     icon: Bath,
     title: 'Baños y Grifería',
     description: 'Sanitarios, grifería y accesorios para baños modernos y funcionales.',
-    image: 'https://images.pexels.com/photos/7031734/pexels-photo-7031734.jpeg',
+    image: 'https://images.pexels.com/photos/7031734/pexels-photo-7031734.jpeg?auto=compress&cs=tinysrgb&w=600&q=80',
   },
   {
     icon: HomeIcon,
