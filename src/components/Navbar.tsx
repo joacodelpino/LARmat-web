@@ -4,6 +4,8 @@ import { WhatsappLogo } from '@phosphor-icons/react';
 import { SUCURSALES } from '../data/info';
 import { events } from '../lib/analytics';
 
+import { smoothScroll } from '../lib/scroll';
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,41 +24,9 @@ export default function Navbar() {
     { label: 'Contacto', href: '#contacto' },
   ];
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      const targetId = href.replace('#', '');
-      
-      let targetPosition = 0;
-      if (targetId) {
-        const elem = document.getElementById(targetId);
-        if (elem) {
-          targetPosition = elem.getBoundingClientRect().top + window.pageYOffset;
-        } else {
-          return;
-        }
-      }
-      
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      const duration = 600;
-      let start: number | null = null;
-
-      const easeOutCubic = (t: number) => (--t) * t * t + 1;
-
-      const animation = (currentTime: number) => {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const progress = Math.min(timeElapsed / duration, 1);
-        
-        window.scrollTo(0, startPosition + distance * easeOutCubic(progress));
-
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-      };
-
-      requestAnimationFrame(animation);
-      setMenuOpen(false);
-    }
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    smoothScroll(e, href);
+    setMenuOpen(false);
   };
 
   return (
@@ -68,7 +38,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <a 
           href="#" 
-          onClick={(e) => handleScroll(e, '#')}
+          onClick={(e) => handleNavClick(e, '#')}
           className="flex items-center gap-2 group"
         >
           <div className="bg-primary rounded-sm px-2 py-1 transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(242,74,73,0.3)]">
@@ -89,7 +59,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              onClick={(e) => handleScroll(e, link.href)}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-gray-300 hover:text-neutral text-[13px] xl:text-sm font-medium transition-colors duration-200 whitespace-nowrap"
             >
               {link.label}
@@ -127,7 +97,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className="text-gray-300 hover:text-neutral text-base font-medium transition-colors py-1"
-              onClick={(e) => handleScroll(e, link.href)}
+              onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.label}
             </a>
