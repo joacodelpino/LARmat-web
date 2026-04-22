@@ -73,10 +73,8 @@ export default function CallToAction() {
           backgroundImage: "url('https://images.pexels.com/photos/3183191/pexels-photo-3183191.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80')",
         }}
       />
-
       {/* Consistent Dark Overlay */}
       <div className="absolute inset-0 bg-black/85 z-[1]" />
-
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Client Type Selector */}
         <div className="flex justify-center mb-16 relative z-10">
@@ -129,7 +127,6 @@ export default function CallToAction() {
                     Escribinos por WhatsApp
                   </a>
                 </div>
-
                 <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-gray-400">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-primary" />
