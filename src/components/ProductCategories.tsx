@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { CheckCircle, Sparkles, MessageCircle } from 'lucide-react';
 import { categories } from '../data/categories';
 import { products } from '../data/products';
-import { SUCURSALES } from '../data/info';
+
 import Reveal from './Reveal';
+import { smoothScroll } from '../lib/scroll';
+
 
 export default function ProductCategories() {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
@@ -146,9 +148,11 @@ export default function ProductCategories() {
                     <h3 className="text-secondary font-bold text-lg mb-1">{product.name}</h3>
                     <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{product.description}</p>
                     <a
-                      href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Me interesa consultar sobre ${encodeURIComponent(product.name)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="#contacto"
+                      onClick={(e) => {
+                        window.dispatchEvent(new CustomEvent('set-contact-type', { detail: 'retail' }));
+                        smoothScroll(e, '#contacto');
+                      }}
                       className="flex items-center gap-2 text-primary hover:text-support font-semibold text-sm transition-colors group/link"
                     >
                       <MessageCircle size={16} />
@@ -163,13 +167,15 @@ export default function ProductCategories() {
 
           <Reveal className="text-center mt-10">
             <a
-              href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero ver el catálogo completo de productos.`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contacto"
+              onClick={(e) => {
+                window.dispatchEvent(new CustomEvent('set-contact-type', { detail: 'retail' }));
+                smoothScroll(e, '#contacto');
+              }}
               className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-3 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             >
               <MessageCircle size={18} />
-              Ver catálogo completo por WhatsApp
+              Ver catálogo completo
             </a>
           </Reveal>
         </div>

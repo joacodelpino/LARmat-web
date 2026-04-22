@@ -1,10 +1,12 @@
 import { useState, useRef } from 'react';
 import { MessageCircle, Instagram, Facebook, ChevronLeft, ChevronRight } from 'lucide-react';
-import { SUCURSALES, REDES } from '../data/info';
+import { REDES } from '../data/info';
 import { TESTIMONIALS } from '../data/testimonials';
 import { milestones } from '../data/aboutUs';
 import { benefits } from '../data/benefits';
 import Reveal from './Reveal';
+import { smoothScroll } from '../lib/scroll';
+
 
 // ── Component ────────────────────────────────────────────────────────────────
 export default function AboutUs() {
@@ -97,9 +99,11 @@ export default function AboutUs() {
                 cargo a toda la provincia.
               </p>
               <a
-                href={`${SUCURSALES.capitalDorrego.wppHref}?text=Hola! Quiero saber más sobre LAR Materiales.`}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contacto"
+                onClick={(e) => {
+                  window.dispatchEvent(new CustomEvent('set-contact-type', { detail: 'retail' }));
+                  smoothScroll(e, '#contacto');
+                }}
                 className="inline-flex items-center gap-2 mt-8 self-start bg-primary hover:bg-support text-white font-bold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
               >
                 <MessageCircle size={18} />
@@ -171,15 +175,18 @@ export default function AboutUs() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <a
-                  href={SUCURSALES.capitalDorrego.wppHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contacto"
+                  onClick={(e) => {
+                    window.dispatchEvent(new CustomEvent('set-contact-type', { detail: 'retail' }));
+                    smoothScroll(e, '#contacto');
+                  }}
                   className="bg-primary hover:bg-support text-white font-bold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg text-center"
                 >
                   Contactar ahora
                 </a>
                 <a
                   href="#sucursales"
+                  onClick={(e) => smoothScroll(e, '#sucursales')}
                   className="border border-gray-600 hover:border-neutral text-gray-300 hover:text-neutral font-semibold px-7 py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 text-center"
                 >
                   Ver sucursales
