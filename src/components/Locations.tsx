@@ -1,6 +1,7 @@
+'use client';
+
 import { MapPin, Phone, MessageCircle, Clock, Navigation } from 'lucide-react';
 import { branches } from '../data/branches';
-import { SUCURSALES } from '../data/info';
 import Reveal from './Reveal';
 
 export default function Locations() {
