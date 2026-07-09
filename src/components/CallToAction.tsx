@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { MessageCircle, Phone, HardHat, User, Mail, PhoneCall, Send, CheckCircle } from 'lucide-react';
-import { SUCURSALES } from '../data/info';
+import { useState, useEffect } from 'react';
+import { MessageCircle, HardHat, User, Mail, PhoneCall, Send, CheckCircle, ShoppingBag, Briefcase } from 'lucide-react';
 import Reveal from './Reveal';
 import { events } from '../lib/analytics';
 import { smoothScroll } from '../lib/scroll';

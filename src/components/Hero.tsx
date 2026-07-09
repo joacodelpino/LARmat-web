@@ -1,7 +1,7 @@
 'use client';
 
 import { MessageCircle, ChevronDown } from 'lucide-react';
-import { SUCURSALES } from '../data/info';
+import { smoothScroll } from '../lib/scroll';
 
 const larLogo = '/images/LAR Logo+texto blanco.png';
 
