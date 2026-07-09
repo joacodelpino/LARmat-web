@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef } from 'react';
 import { MessageCircle, Instagram, Facebook, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SUCURSALES, REDES } from '../data/info';
@@ -311,7 +313,7 @@ export default function AboutUs() {
                     }`}
                   >
                     <p className="text-gray-300 text-lg sm:text-xl leading-relaxed italic">
-                      "{t.text}"
+                      &ldquo;{t.text}&rdquo;
                     </p>
                     <div className="mt-6">
                       <span className="text-white font-bold block">{t.name}</span>
