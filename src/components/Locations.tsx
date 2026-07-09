@@ -3,6 +3,7 @@
 import { MapPin, Phone, MessageCircle, Clock, Navigation } from 'lucide-react';
 import { branches } from '../data/branches';
 import Reveal from './Reveal';
+import { smoothScroll } from '../lib/scroll';
 
 export default function Locations() {
   return (
@@ -20,19 +21,51 @@ export default function Locations() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* Wholesale Section - Highlighted & Moved Up */}
+        <Reveal className="mb-16">
+          <div className="relative group overflow-hidden bg-secondary rounded-sm p-6 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-l-4 border-primary">
+            {/* Background elements */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="flex flex-col sm:flex-row items-center gap-5 relative z-10 text-center sm:text-left">
+              <div className="shrink-0 w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center border border-primary/20">
+                <TrendingUp size={28} />
+              </div>
+              <div>
+                <h3 className="text-white font-black text-xl sm:text-2xl italic tracking-tight uppercase">
+                  ¿Necesitás cotización <span className="text-primary">por volumen?</span>
+                </h3>
+                <p className="text-gray-400 text-sm sm:text-base mt-2 max-w-md">
+                  Ofrecemos precios especiales y atención personalizada para constructoras, grandes obras y proyectos corporativos.
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="#contacto"
+              onClick={(e) => {
+                window.dispatchEvent(new CustomEvent('set-contact-type', { detail: 'enterprise' }));
+                smoothScroll(e, '#contacto');
+              }}
+              className="relative z-10 shrink-0 flex items-center gap-3 bg-primary hover:bg-neutral text-white hover:text-secondary font-black px-8 py-4 rounded-sm shadow-lg hover:shadow-neutral/40 duration-300 transition-all hover:-translate-y-1 uppercase text-sm tracking-wider"
+            >
+              <MessageCircle size={18} weight="fill" />
+              Solicitar precios mayoristas
+            </a>
+          </div>
+        </Reveal>
+
+        <div id="sucursales-lista" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {branches.map((branch, i) => (
             <Reveal key={branch.name} delay={i * 80}>
               <div
-                className={`group rounded-sm overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border h-full ${
-                  i === branches.length - 1 && branches.length % 2 !== 0
-                    ? 'sm:col-span-2 md:col-span-1'
-                    : ''
-                } ${
-                  branch.featured
+                className={`group rounded-sm overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border h-full ${i === branches.length - 1 && branches.length % 2 !== 0
+                  ? 'sm:col-span-2 md:col-span-1'
+                  : ''
+                  } ${branch.featured
                     ? 'border-primary/30 ring-1 ring-primary/20'
                     : 'border-gray-100'
-                }`}
+                  }`}
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -67,23 +100,23 @@ export default function Locations() {
                     </div>
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <a
                       href={`${branch.wppHref}?text=Hola! Quiero información sobre la sucursal ${branch.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-support text-white text-sm font-bold py-2.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
+                      className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-support text-white text-sm font-bold py-3 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
                     >
-                      <MessageCircle size={15} />
+                      <MessageCircle size={16} />
                       Contactar
                     </a>
                     <a
                       href={branch.mapsHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 border border-gray-300 hover:border-primary text-gray-600 hover:text-primary text-sm font-semibold py-2.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
+                      className="flex-1 flex items-center justify-center gap-2 border border-gray-300 hover:border-primary text-gray-600 hover:text-primary text-sm font-semibold py-3 rounded-sm transition-all duration-300 hover:-translate-y-0.5"
                     >
-                      <Navigation size={15} />
+                      <Navigation size={16} />
                       Ubicación
                     </a>
                   </div>
@@ -92,24 +125,6 @@ export default function Locations() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal className="mt-12">
-          <div className="bg-gray-50 border border-gray-200 rounded-sm p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="text-secondary font-bold text-lg">¿Necesitás cotización por volumen?</h3>
-              <p className="text-gray-500 text-sm mt-1">
-                Consultanos por precios especiales para grandes obras y proyectos.
-              </p>
-            </div>
-            <a
-              href="#contacto"
-              className="shrink-0 flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold px-6 py-3 rounded-sm shadow-xl hover:shadow-[0_0_20px_rgba(0,0,0,0.4)] duration-300 transition-all hover:-translate-y-0.5"
-            >
-              <MessageCircle size={16} />
-              Consultar precios mayoristas
-            </a>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
