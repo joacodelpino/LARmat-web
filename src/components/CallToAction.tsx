@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { MessageCircle, Phone, HardHat, User, Mail, PhoneCall, Send, CheckCircle } from 'lucide-react';
 import { SUCURSALES } from '../data/info';

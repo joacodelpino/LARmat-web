@@ -1,3 +1,5 @@
+'use client';
+
 import { Phone, MapPin, FacebookLogo, InstagramLogo, WhatsappLogo } from '@phosphor-icons/react';
 import { SUCURSALES, REDES } from '../data/info';
 import Reveal from './Reveal';
