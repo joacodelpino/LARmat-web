@@ -2,16 +2,151 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LAR Materiales de Construcción | La Rioja, Argentina</title>
-    <meta name="description" content="Materiales de construcción de primera calidad en La Rioja, Argentina. Ladrillos, cerámicos, hierros, revestimientos y más. Envíos sin cargo." />
-    <meta property="og:title" content="LAR Materiales de Construcción" />
-    <meta property="og:description" content="Todo lo que tu obra necesita, en un solo lugar. La Rioja, Argentina." />
+    <meta
+      name="description"
+      content="Materiales de construcción de primera calidad en La Rioja, Argentina. Ladrillos, cerámicos, hierros, revestimientos y más. Envíos sin cargo."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://larmateriales.com.ar" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://larmateriales.com.ar" />
+    <meta
+      property="og:title"
+      content="LAR Materiales de Construcción | La Rioja, Argentina"
+    />
+    <meta
+      property="og:description"
+      content="Todo lo que tu obra necesita, en un solo lugar. Ladrillos, cerámicos, hierros, revestimientos y más. Envíos sin cargo a toda La Rioja."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?q=75&w=1280&auto=format&fit=crop"
+    />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="LAR Materiales de Construcción" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="LAR Materiales de Construcción | La Rioja, Argentina"
+    />
+    <meta
+      name="twitter:description"
+      content="Todo lo que tu obra necesita, en un solo lugar. Envíos sin cargo a toda La Rioja."
+    />
+    <meta
+      name="twitter:image"
+      content="https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?q=75&w=1280&auto=format&fit=crop"
+    />
+
+    <link
+      rel="preload"
+      as="image"
+      href="https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?q=75&w=1280&auto=format&fit=crop"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/src/assets/LAR Logo+texto blanco.png"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      href="/src/assets/font/FRAHV.TTF"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics 4 — reemplazar G-XXXXXXXXXX con tu Measurement ID -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Y5TD28VDGX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Y5TD28VDGX"); //hardcodeado
+    </script>
+
+    <!-- Microsoft Clarity — reemplazar XXXXXXXXXX con tu Project ID -->
+    <script>
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "wdfnu9xpz6");
+    </script>
+
+    <!-- Schema.org: Local Business -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": "LAR Materiales de Construcción",
+        "description": "Materiales de construcción de primera calidad en La Rioja, Argentina. Más de 40 años de trayectoria.",
+        "url": "https://larmateriales.com.ar",
+        "logo": "https://larmateriales.com.ar/favicon.png",
+        "image": "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?q=75&w=1280&auto=format&fit=crop",
+        "telephone": "+5493804324279",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Dorrego 199 esq. Vélez Sarsfield",
+          "addressLocality": "La Rioja",
+          "addressRegion": "La Rioja",
+          "addressCountry": "AR"
+        },
+        "sameAs": [
+          "https://www.instagram.com/larmateriales/",
+          "https://www.facebook.com/LarMaterialeslr/"
+        ],
+        "hasMap": "https://maps.app.goo.gl/xynEi4vE93NAjbxh7",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "08:00",
+            "closes": "13:00"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Phone, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { WhatsappLogo } from '@phosphor-icons/react';
+import { SUCURSALES } from '../data/info';
+import { events } from '../lib/analytics';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,11 +16,48 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Productos', href: '#productos' },
-    { label: 'Stock', href: '#stock' },
-    { label: 'Por qué elegirnos', href: '#nosotros' },
+    { label: 'Sobre nosotros', href: '#sobre-nosotros' },
     { label: 'Sucursales', href: '#sucursales' },
+    { label: 'Preguntas frecuentes', href: '#preguntas-frecuentes' },
     { label: 'Contacto', href: '#contacto' },
   ];
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.replace('#', '');
+      
+      let targetPosition = 0;
+      if (targetId) {
+        const elem = document.getElementById(targetId);
+        if (elem) {
+          targetPosition = elem.getBoundingClientRect().top + window.pageYOffset;
+        } else {
+          return;
+        }
+      }
+      
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 600;
+      let start: number | null = null;
+
+      const easeOutCubic = (t: number) => (--t) * t * t + 1;
+
+      const animation = (currentTime: number) => {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        window.scrollTo(0, startPosition + distance * easeOutCubic(progress));
+
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      };
+
+      requestAnimationFrame(animation);
+      setMenuOpen(false);
+    }
+  };
 
   return (
     <header
@@ -26,48 +66,53 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <div className="bg-primary rounded-sm px-2 py-1">
+        <a 
+          href="#" 
+          onClick={(e) => handleScroll(e, '#')}
+          className="flex items-center gap-2 group"
+        >
+          <div className="bg-primary rounded-sm px-2 py-1 transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(242,74,73,0.3)]">
             <span className="text-white font-black text-xl tracking-tight">LAR</span>
           </div>
-          <div className="hidden sm:block">
-            <span className="text-white font-bold text-sm leading-tight block">Materiales de</span>
-            <span className="text-neutral font-bold text-sm leading-tight block">Construcción</span>
+          <div>
+            <span className="text-white font-bold text-xs sm:text-sm leading-tight block group-hover:text-primary transition-colors duration-300">
+              Materiales de
+            </span>
+            <span className="text-neutral font-bold text-xs sm:text-sm leading-tight block group-hover:text-white transition-colors duration-300">
+              Construcción
+            </span>
           </div>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-gray-300 hover:text-neutral text-sm font-medium transition-colors duration-200"
+              onClick={(e) => handleScroll(e, link.href)}
+              className="text-gray-300 hover:text-neutral text-[13px] xl:text-sm font-medium transition-colors duration-200 whitespace-nowrap"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center">
           <a
-            href="tel:+5493804000000"
-            className="flex items-center gap-2 text-neutral text-sm font-semibold hover:text-white transition-colors"
-          >
-            <Phone size={16} />
-            <span>(380) 400-0000</span>
-          </a>
-          <a
-            href="https://wa.me/5493804000000"
+            href={SUCURSALES.capitalDorrego.wppHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary hover:bg-support text-white text-sm font-bold px-4 py-2 rounded-sm transition-colors duration-200"
+            onClick={() => events.whatsappClick('navbar')}
+            className="group flex items-center gap-2 bg-primary hover:bg-support text-white text-[13px] xl:text-sm font-bold px-4 xl:px-6 py-2 xl:py-2.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-8px_rgba(242,74,73,0.5)] whitespace-nowrap"
           >
-            WhatsApp
+            <WhatsappLogo size={18} weight="fill" className="transition-transform duration-300 group-hover:scale-110" />
+            <span className="hidden xl:inline">WhatsApp</span>
+            <span className="xl:hidden">WP</span>
           </a>
         </div>
 
         <button
-          className="lg:hidden text-white"
+          className="lg:hidden text-white p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -82,15 +127,16 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className="text-gray-300 hover:text-neutral text-base font-medium transition-colors py-1"
-              onClick={() => setMenuOpen(false)}
+              onClick={(e) => handleScroll(e, link.href)}
             >
               {link.label}
             </a>
           ))}
           <a
-            href="https://wa.me/5493804000000"
+            href={SUCURSALES.capitalDorrego.wppHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => events.whatsappClick('navbar')}
             className="bg-primary text-white text-sm font-bold px-4 py-3 rounded-sm text-center mt-2"
           >
             Consultar por WhatsApp

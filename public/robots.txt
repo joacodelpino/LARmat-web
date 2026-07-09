@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://larmateriales.com.ar/sitemap.xml
