@@ -1,5 +1,4 @@
 declare function gtag(...args: unknown[]): void;
-declare function clarity(method: string, ...args: unknown[]): void;
 
 type EventParams = Record<string, string | number | boolean>;
 
@@ -23,4 +22,3 @@ export const events = {
     trackEvent('nav_link_click', { label }),
 } as const;
 
-export { clarity };

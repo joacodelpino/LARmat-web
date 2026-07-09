@@ -1,6 +1,7 @@
+'use client';
+
 import { MapPin, Phone, MessageCircle, Clock, Navigation, TrendingUp } from 'lucide-react';
 import { branches } from '../data/branches';
-
 import Reveal from './Reveal';
 import { smoothScroll } from '../lib/scroll';
 
@@ -48,7 +49,7 @@ export default function Locations() {
               }}
               className="relative z-10 shrink-0 flex items-center gap-3 bg-primary hover:bg-neutral text-white hover:text-secondary font-black px-8 py-4 rounded-sm shadow-lg hover:shadow-neutral/40 duration-300 transition-all hover:-translate-y-1 uppercase text-sm tracking-wider"
             >
-              <MessageCircle size={18} weight="fill" />
+              <MessageCircle size={18} />
               Solicitar precios mayoristas
             </a>
           </div>
