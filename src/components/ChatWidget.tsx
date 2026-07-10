@@ -1,11 +1,18 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Bot, X, Send, MessageCircle } from 'lucide-react';
+import { Bot, X, Send, MessageCircle, ChevronDown } from 'lucide-react';
+
+export type Source = {
+  content: string;
+  source: string;
+  similarity: number;
+};
 
 export type Message = {
   role: 'user' | 'assistant';
   content: string;
+  sources?: Source[];
 };
 
 const INITIAL_MESSAGE: Message = {
@@ -14,7 +21,7 @@ const INITIAL_MESSAGE: Message = {
 };
 
 type ChatWidgetProps = {
-  onSendMessage: (message: string, history: Message[]) => Promise<{ answer: string }>;
+  onSendMessage: (message: string, history: Message[]) => Promise<{ answer: string; sources: Source[] }>;
 };
 
 export default function ChatWidget({ onSendMessage }: ChatWidgetProps) {
@@ -47,8 +54,11 @@ export default function ChatWidget({ onSendMessage }: ChatWidgetProps) {
     setIsLoading(true);
 
     try {
-      const { answer } = await onSendMessage(text, history);
-      setMessages((prev) => [...prev, { role: 'assistant', content: answer }]);
+      const { answer, sources } = await onSendMessage(text, history);
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: answer, sources },
+      ]);
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -187,29 +197,69 @@ export default function ChatWidget({ onSendMessage }: ChatWidgetProps) {
 
 function MessageBubble({ message }: { message: Message }) {
   const isUser = message.role === 'user';
+  const [sourcesOpen, setSourcesOpen] = useState(false);
+  const hasSources = !isUser && message.sources && message.sources.length > 0;
 
   return (
-    <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
-      {!isUser && (
+    <div className={`flex flex-col gap-1 ${isUser ? 'items-end' : 'items-start'}`}>
+      <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+        {!isUser && (
+          <div
+            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full"
+            style={{ backgroundColor: '#1a1a1a' }}
+          >
+            <Bot size={13} className="text-white" />
+          </div>
+        )}
         <div
-          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full"
-          style={{ backgroundColor: '#1a1a1a' }}
+          className={`
+            max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm
+            ${isUser
+              ? 'rounded-br-sm text-white'
+              : 'rounded-bl-sm bg-white text-gray-800'
+            }
+          `}
+          style={isUser ? { backgroundColor: '#F24A49' } : {}}
         >
-          <Bot size={13} className="text-white" />
+          {message.content}
+        </div>
+      </div>
+
+      {/* Sources accordion */}
+      {hasSources && (
+        <div className="ml-9 w-[75%]">
+          <button
+            onClick={() => setSourcesOpen((prev) => !prev)}
+            className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <ChevronDown
+              size={12}
+              className={`transition-transform duration-200 ${sourcesOpen ? 'rotate-180' : ''}`}
+            />
+            Ver fuentes ({message.sources!.length})
+          </button>
+
+          {sourcesOpen && (
+            <div className="mt-1 space-y-1.5">
+              {message.sources!.map((src, i) => (
+                <div key={i} className="rounded-lg border border-gray-100 bg-white p-2.5 shadow-sm">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">
+                      {src.source}
+                    </span>
+                    <span className="text-[10px] text-gray-300">
+                      {(src.similarity * 100).toFixed(0)}% relevancia
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
+                    {src.content}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
-      <div
-        className={`
-          max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm
-          ${isUser
-            ? 'rounded-br-sm text-white'
-            : 'rounded-bl-sm bg-white text-gray-800'
-          }
-        `}
-        style={isUser ? { backgroundColor: '#F24A49' } : {}}
-      >
-        {message.content}
-      </div>
     </div>
   );
 }
