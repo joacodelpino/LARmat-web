@@ -45,7 +45,7 @@ export const products: Product[] = [
     category: 'Materiales',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://images.unsplash.com/photo-1620230874645-0d85522b1a2d?q=75&w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=75&w=600&auto=format&fit=crop',
     description: 'Aislación térmica y acústica de alto rendimiento.',
   },
   {
