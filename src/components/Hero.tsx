@@ -3,7 +3,7 @@
 import { MessageCircle, ChevronDown } from 'lucide-react';
 import { SUCURSALES } from '../data/info';
 
-const larLogo = '/images/LAR Logo+texto blanco.png';
+const larLogo = '/images/LAR-Logo-texto-blanco.png';
 
 export default function Hero() {
   return (
