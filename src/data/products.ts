@@ -13,7 +13,7 @@ export const products: Product[] = [
     category: 'Ladrillos',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://www.palmarsa.com.ar/multimedia/products/celerlosa/gallery/03.jpg',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=75&w=600&auto=format&fit=crop',
     description: 'Ladrillo cerámico hueco ideal para paredes interiores y exteriores.',
   },
   {
@@ -21,7 +21,7 @@ export const products: Product[] = [
     category: 'Cementos',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://corralon.net/wp-content/uploads/2025/06/Palet-CEMENTO-LOMA-NEGRA-CPC-30-x-50-kg.png',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=75&w=600&auto=format&fit=crop',
     description: 'Cemento portland en presentacion de 25 y 50kg de alta calidad y versatilidad.',
   },
   {
@@ -37,7 +37,7 @@ export const products: Product[] = [
     category: 'Construcción en Seco',
     badge: 'Nuevos ingresos',
     badgeType: 'new',
-    image: 'https://www.cerrosud.com/wp-content/uploads/2022/09/21-izmir-chiaro.jpg',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=75&w=600&auto=format&fit=crop',
     description: 'Sistemas de tabique seco para construcciones rápidas y eficientes.',
   },
   {
@@ -45,7 +45,7 @@ export const products: Product[] = [
     category: 'Materiales',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://chavezcom.com/baldosones-bordes-atermicos/losetas-baldosones-para-piletas.jpg',
+    image: 'https://images.unsplash.com/photo-1620230874645-0d85522b1a2d?q=75&w=600&auto=format&fit=crop',
     description: 'Aislación térmica y acústica de alto rendimiento.',
   },
   {
@@ -53,7 +53,7 @@ export const products: Product[] = [
     category: 'Hierros',
     badge: 'Stock disponible',
     badgeType: 'stock',
-    image: 'https://images.cerymatlaplata.com.ar/products/5d793ff3620481568227315.jpg',
+    image: 'https://images.unsplash.com/photo-1567361808960-dec9cb578182?q=75&w=600&auto=format&fit=crop',
     description: 'Varillas corrugadas certificadas para estructuras de hormigón armado.',
   },
 ];
