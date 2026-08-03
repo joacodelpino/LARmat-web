@@ -1,11 +1,11 @@
 'use client';
 
-import ChatWidget, { type Message } from './ChatWidget';
+import ChatWidget, { type Message, type Source } from './ChatWidget';
 
 async function sendMessage(
   message: string,
   history: Message[]
-): Promise<{ answer: string }> {
+): Promise<{ answer: string; sources: Source[] }> {
   const res = await fetch('/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -14,7 +14,7 @@ async function sendMessage(
 
   if (!res.ok) throw new Error('Error en el chat');
 
-  return res.json() as Promise<{ answer: string }>;
+  return res.json() as Promise<{ answer: string; sources: Source[] }>;
 }
 
 export default function ChatProvider() {

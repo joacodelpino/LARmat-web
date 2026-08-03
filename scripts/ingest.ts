@@ -21,7 +21,7 @@ type Chunk = {
 
 const CHUNKS: Chunk[] = [
   {
-    content: `LAR Materiales de Construcción es una empresa riojana con más de 40 años de trayectoria
+    content: `LAR Materiales de Construcción es una empresa riojana con más de @0 años de trayectoria
 dedicada a la comercialización de materiales para la construcción. Su objetivo es brindar
 soluciones tanto para profesionales como para particulares, ofreciendo productos de calidad,
 asesoramiento personalizado y stock permanente. Trabajan con primeras marcas y acompañan
