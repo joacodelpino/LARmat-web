@@ -1,7 +1,7 @@
 'use client';
 
 import { MessageCircle, ChevronDown } from 'lucide-react';
-import { SUCURSALES } from '../data/info';
+import { smoothScroll } from '../lib/scroll';
 
 const larLogo = '/images/LAR-Logo-texto-blanco.png';
 
@@ -48,16 +48,22 @@ export default function Hero() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
           <a
-            href={SUCURSALES.capitalDorrego.wppHref}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contacto"
+            onClick={(e) => {
+              window.dispatchEvent(new CustomEvent('set-contact-type', { detail: 'retail' }));
+              smoothScroll(e, '#contacto');
+            }}
             className="group flex items-center gap-3 bg-primary hover:bg-support text-white font-bold text-base sm:text-lg px-8 py-4 rounded-sm hover:shadow-xl hover:scale-105  transition-all duration-300"
           >
             <MessageCircle size={22} />
             Consultar por WhatsApp
           </a>
           <a
-            href={SUCURSALES.capitalDorrego.telHref}
+            href="#contacto"
+            onClick={(e) => {
+              window.dispatchEvent(new CustomEvent('set-contact-type', { detail: 'retail' }));
+              smoothScroll(e, '#contacto');
+            }}
             className="flex items-center gap-2 ring-2 ring-inset ring-neutral text-neutral hover:bg-neutral hover:text-black font-bold text-base sm:text-lg px-8 py-4 rounded-sm transition-all duration-300"
           >
             Llamar ahora
@@ -80,6 +86,7 @@ export default function Hero() {
 
       <a
         href="#productos"
+        onClick={(e) => smoothScroll(e, '#productos')}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-neutral transition-colors animate-bounce"
         aria-label="Scroll down"
       >
