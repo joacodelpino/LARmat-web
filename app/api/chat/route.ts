@@ -115,6 +115,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Mensaje requerido' }, { status: 400 });
   }
 
+  console.log('[chat] query:', message);
+
   // 1. Generar embedding de la pregunta
   let queryEmbedding: number[];
   try {
@@ -138,6 +140,7 @@ export async function POST(req: NextRequest) {
 
   // 3. Armar el mensaje con contexto (si hay chunks) o sin contexto
   const typedChunks = (chunks ?? []) as Chunk[];
+  console.log('[chat] chunks recuperados:', typedChunks.map(c => `${c.source} (${(c.similarity * 100).toFixed(0)}%)`));
 
   const userMessage = typedChunks.length > 0
     ? `Contexto disponible sobre LAR:\n\n${typedChunks.map(c => c.content).join('\n\n')}\n\nPregunta del cliente: ${message}`
