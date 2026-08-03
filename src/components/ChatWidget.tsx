@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Bot, X, Send, MessageCircle, ChevronDown } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 export type Source = {
   content: string;
@@ -221,7 +222,19 @@ function MessageBubble({ message }: { message: Message }) {
           `}
           style={isUser ? { backgroundColor: '#F24A49' } : {}}
         >
-          {message.content}
+          {isUser ? message.content : (
+            <ReactMarkdown
+              components={{
+                p: ({ children }) => <p className="mb-1 last:mb-0">{children}</p>,
+                ul: ({ children }) => <ul className="list-disc list-inside space-y-0.5 mb-1">{children}</ul>,
+                ol: ({ children }) => <ol className="list-decimal list-inside space-y-0.5 mb-1">{children}</ol>,
+                li: ({ children }) => <li>{children}</li>,
+                strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+              }}
+            >
+              {message.content}
+            </ReactMarkdown>
+          )}
         </div>
       </div>
 
