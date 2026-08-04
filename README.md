@@ -95,6 +95,55 @@ Para actualizar la base de conocimiento, editar los `CHUNKS` en `scripts/ingest.
 pnpm tsx scripts/ingest.ts
 ```
 
+### Base de conocimiento
+
+La base de conocimiento está compuesta por **17 chunks** de texto con información verificable de LAR:
+
+| Fuente | Contenido |
+|---|---|
+| `01_Empresa.md` | Historia, valores y trayectoria |
+| `02_Sucursales.md` | Direcciones y horarios de las 3 sucursales |
+| `03_Productos.md` | Categorías de productos comercializados |
+| `04_Marcas.md` | Marcas con las que trabaja LAR |
+| `05_Preguntas-frecuentes.md` | Envíos, presupuestos, formas de pago, venta mayorista |
+| `07_Contacto.md` | Teléfonos y redes sociales |
+| `09_Conocimiento_tecnico.md` | Uso de materiales específicos (membranas, perfiles, adhesivos, etc.) |
+
+### Schema de Supabase
+
+```sql
+-- Habilitar pgvector
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- Tabla de chunks
+CREATE TABLE lar_chunks (
+  id bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  content text NOT NULL,
+  embedding vector(768),
+  source text,
+  metadata jsonb
+);
+
+-- Índice HNSW para búsqueda eficiente
+CREATE INDEX ON lar_chunks USING hnsw (embedding vector_cosine_ops);
+
+-- Función de búsqueda por similitud
+CREATE OR REPLACE FUNCTION match_lar_chunks(
+  query_embedding vector(768),
+  match_threshold float,
+  match_count int
+)
+RETURNS TABLE (id bigint, content text, source text, metadata jsonb, similarity float)
+LANGUAGE sql STABLE AS $$
+  SELECT id, content, source, metadata,
+    1 - (embedding <=> query_embedding) AS similarity
+  FROM lar_chunks
+  WHERE 1 - (embedding <=> query_embedding) > match_threshold
+  ORDER BY embedding <=> query_embedding
+  LIMIT match_count;
+$$;
+```
+
 ## Flujo de branches
 
 | Branch    | Entorno     | Deploy                       |
