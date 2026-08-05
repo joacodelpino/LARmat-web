@@ -1,6 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import * as dotenv from 'dotenv';
 import { resolve } from 'path';
+import { readdir, readFile } from 'fs/promises';
+import pdfParse from 'pdf-parse';
 
 dotenv.config({ path: resolve(process.cwd(), '.env.local') });
 
@@ -11,7 +13,13 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-// ── Chunks hardcodeados para demo ───────────────────────────────────────────
+// ── Configuración de chunking ────────────────────────────────────────────────
+
+const CHUNK_SIZE = 500;    // caracteres por chunk
+const CHUNK_OVERLAP = 100; // solapamiento entre chunks
+const PDF_DIR = resolve(process.cwd(), 'data/pdfs');
+
+// ── Tipos ────────────────────────────────────────────────────────────────────
 
 type Chunk = {
   content: string;
@@ -19,9 +27,11 @@ type Chunk = {
   metadata: { category: string };
 };
 
-const CHUNKS: Chunk[] = [
+// ── Chunks hardcodeados ──────────────────────────────────────────────────────
+
+const HARDCODED_CHUNKS: Chunk[] = [
   {
-    content: `LAR Materiales de Construcción es una empresa riojana con más de @0 años de trayectoria
+    content: `LAR Materiales de Construcción es una empresa riojana con más de 40 años de trayectoria
 dedicada a la comercialización de materiales para la construcción. Su objetivo es brindar
 soluciones tanto para profesionales como para particulares, ofreciendo productos de calidad,
 asesoramiento personalizado y stock permanente. Trabajan con primeras marcas y acompañan
@@ -124,7 +134,40 @@ teléfono 3825 533887. Instagram: @larmateriales. Facebook: LAR Materiales de Co
   },
 ];
 
-// ── Ingestion ────────────────────────────────────────────────────────────────
+// ── Chunking con overlap ─────────────────────────────────────────────────────
+
+function splitWithOverlap(text: string, chunkSize: number, overlap: number): string[] {
+  const chunks: string[] = [];
+  let start = 0;
+
+  while (start < text.length) {
+    const end = start + chunkSize;
+    chunks.push(text.slice(start, end).trim());
+    start += chunkSize - overlap;
+  }
+
+  return chunks.filter((c) => c.length > 50); // descartar fragmentos demasiado cortos
+}
+
+// ── Extracción de PDFs ───────────────────────────────────────────────────────
+
+async function extractChunksFromPdf(filePath: string, fileName: string): Promise<Chunk[]> {
+  const buffer = await readFile(filePath);
+  const { text } = await pdfParse(buffer);
+
+  // Normalizar espacios y saltos de línea excesivos
+  const cleanText = text.replace(/\n{3,}/g, '\n\n').replace(/ {2,}/g, ' ').trim();
+
+  const fragments = splitWithOverlap(cleanText, CHUNK_SIZE, CHUNK_OVERLAP);
+
+  return fragments.map((content) => ({
+    content,
+    source: fileName,
+    metadata: { category: 'pdf_import' },
+  }));
+}
+
+// ── Embedding ────────────────────────────────────────────────────────────────
 
 async function generateEmbedding(text: string): Promise<number[]> {
   const url = `https://generativelanguage.googleapis.com/v1/models/gemini-embedding-2:embedContent?key=${process.env.GEMINI_API_KEY}`;
@@ -145,42 +188,81 @@ async function generateEmbedding(text: string): Promise<number[]> {
   return data.embedding.values;
 }
 
-async function ingest() {
-  console.log('Borrando chunks existentes...');
-  const { error: deleteError } = await supabase.from('lar_chunks').delete().neq('id', 0);
-  if (deleteError) {
-    console.error('Error al borrar:', deleteError.message);
-    process.exit(1);
-  }
-  console.log('Tabla limpia\n');
+// ── Ingesta de un conjunto de chunks ─────────────────────────────────────────
 
-  console.log(`Ingiriendo ${CHUNKS.length} chunks...\n`);
-
-  for (let i = 0; i < CHUNKS.length; i++) {
-    const chunk = CHUNKS[i];
-    const label = `[${i + 1}/${CHUNKS.length}] ${chunk.source} — ${chunk.content.slice(0, 60).replace(/\n/g, ' ')}...`;
-
-    try {
-      const embedding = await generateEmbedding(chunk.content);
-
-      const { error: insertError } = await supabase.from('lar_chunks').insert({
-        content: chunk.content,
-        embedding,
-        source: chunk.source,
-        metadata: chunk.metadata,
-      });
-
-      if (insertError) throw new Error(insertError.message);
-
-      console.log(`OK ${label}`);
-    } catch (err) {
-      console.error(`ERROR ${label}`);
-      console.error(err);
-      process.exit(1);
-    }
+async function ingestChunks(chunks: Chunk[], label: string): Promise<void> {
+  // Borrar solo los chunks cuyo source coincida con los del conjunto actual
+  const sources = [...new Set(chunks.map((c) => c.source))];
+  for (const source of sources) {
+    const { error } = await supabase.from('lar_chunks').delete().eq('source', source);
+    if (error) throw new Error(`Error borrando chunks de "${source}": ${error.message}`);
   }
 
-  console.log(`\nIngestion completa. ${CHUNKS.length} chunks insertados.`);
+  console.log(`\n[${label}] Insertando ${chunks.length} chunks...`);
+
+  for (let i = 0; i < chunks.length; i++) {
+    const chunk = chunks[i];
+    const preview = chunk.content.slice(0, 60).replace(/\n/g, ' ');
+    const embedding = await generateEmbedding(chunk.content);
+
+    const { error } = await supabase.from('lar_chunks').insert({
+      content: chunk.content,
+      embedding,
+      source: chunk.source,
+      metadata: chunk.metadata,
+    });
+
+    if (error) throw new Error(`Error insertando chunk: ${error.message}`);
+    console.log(`  [${i + 1}/${chunks.length}] ${chunk.source} — ${preview}...`);
+  }
 }
 
-ingest();
+// ── Main ─────────────────────────────────────────────────────────────────────
+
+async function ingest() {
+  console.log('=== Inicio de ingesta ===\n');
+
+  // 1. Chunks hardcodeados
+  await ingestChunks(HARDCODED_CHUNKS, 'hardcoded');
+  console.log(`OK ${HARDCODED_CHUNKS.length} chunks hardcodeados insertados.`);
+
+  // 2. PDFs
+  let pdfFiles: string[] = [];
+  try {
+    const entries = await readdir(PDF_DIR);
+    pdfFiles = entries.filter((f) => f.toLowerCase().endsWith('.pdf'));
+  } catch {
+    console.log('\nCarpeta data/pdfs no encontrada o vacía — se omite ingesta de PDFs.');
+  }
+
+  let totalPdfChunks = 0;
+
+  for (const fileName of pdfFiles) {
+    const filePath = resolve(PDF_DIR, fileName);
+    console.log(`\nProcesando PDF: ${fileName}`);
+
+    const chunks = await extractChunksFromPdf(filePath, fileName);
+    console.log(`  → ${chunks.length} chunks generados`);
+
+    await ingestChunks(chunks, fileName);
+    totalPdfChunks += chunks.length;
+
+    console.log(`OK ${fileName} — ${chunks.length} chunks insertados.`);
+  }
+
+  // 3. Resumen final
+  const { count } = await supabase
+    .from('lar_chunks')
+    .select('*', { count: 'exact', head: true });
+
+  console.log('\n=== Resumen ===');
+  console.log(`PDFs procesados:       ${pdfFiles.length}`);
+  console.log(`Chunks de PDFs:        ${totalPdfChunks}`);
+  console.log(`Chunks hardcodeados:   ${HARDCODED_CHUNKS.length}`);
+  console.log(`Total en lar_chunks:   ${count}`);
+}
+
+ingest().catch((err) => {
+  console.error('Error fatal en ingesta:', err);
+  process.exit(1);
+});
